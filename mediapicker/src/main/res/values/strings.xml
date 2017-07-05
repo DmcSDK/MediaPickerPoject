@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MediaPicker</string>
+    <string name="all_dir_name">All Image and Video</string>
+    <string name="video_dir_name">All Video</string>
+</resources>
