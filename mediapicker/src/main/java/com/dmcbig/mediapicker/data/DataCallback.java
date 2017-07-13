@@ -1,6 +1,6 @@
 package com.dmcbig.mediapicker.data;
 
-import com.dmcbig.mediapicker.entity.MediaDir;
+import com.dmcbig.mediapicker.entity.Folder;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,6 @@ import java.util.ArrayList;
 public interface DataCallback {
 
 
-     void onData( ArrayList<MediaDir> list);
+     void onData( ArrayList<Folder> list);
 
 }

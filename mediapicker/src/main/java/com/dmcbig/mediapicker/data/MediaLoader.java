@@ -8,18 +8,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 
-import com.dmcbig.mediapicker.PickerConfig;
 import com.dmcbig.mediapicker.R;
+import com.dmcbig.mediapicker.entity.Folder;
 import com.dmcbig.mediapicker.entity.Media;
-import com.dmcbig.mediapicker.entity.MediaDir;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import static android.R.attr.path;
 
 
 /**
@@ -65,11 +59,11 @@ public class MediaLoader implements LoaderManager.LoaderCallbacks{
 
     @Override
     public void onLoadFinished(Loader loader, Object o) {
-        ArrayList<MediaDir> mediaDirs=new ArrayList<>();
-        MediaDir allMediaDir=new MediaDir(mContext.getResources().getString(R.string.all_dir_name));
-        mediaDirs.add(allMediaDir);
-        MediaDir allVideoDir=new MediaDir(mContext.getResources().getString(R.string.video_dir_name));
-        mediaDirs.add(allVideoDir);
+        ArrayList<Folder> folders =new ArrayList<>();
+        Folder allFolder =new Folder(mContext.getResources().getString(R.string.all_dir_name));
+        folders.add(allFolder);
+        Folder allVideoDir=new Folder(mContext.getResources().getString(R.string.video_dir_name));
+        folders.add(allVideoDir);
         Cursor cursor=(Cursor) o;
         while (cursor.moveToNext()){
             String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
@@ -82,19 +76,19 @@ public class MediaLoader implements LoaderManager.LoaderCallbacks{
             String dirName=getParent(path);
 
             Media media=new Media(path,name,dateTime,mediaType,size,id,dirName);
-            allMediaDir.addMedias(media);
-            if(mediaType==3){allVideoDir.addMedias(media);Log.e(PickerConfig.LOG_TAG,path);}
+            allFolder.addMedias(media);
+            if(mediaType==3){allVideoDir.addMedias(media);}
 
-            int index=hasDir(mediaDirs,dirName);
+            int index=hasDir(folders,dirName);
             if(index!=-1){
-                mediaDirs.get(index).addMedias(media);
+                folders.get(index).addMedias(media);
             }else{
-                MediaDir mediaDir=new MediaDir(dirName);
-                mediaDir.addMedias(media);
-                mediaDirs.add(mediaDir);
+                Folder folder =new Folder(dirName);
+                folder.addMedias(media);
+                folders.add(folder);
             }
         }
-        mLoader.onData(mediaDirs);
+        mLoader.onData(folders);
     }
 
     public String getParent(String path) {
@@ -102,10 +96,10 @@ public class MediaLoader implements LoaderManager.LoaderCallbacks{
         return sp[sp.length-2];
     }
 
-    public int hasDir(ArrayList<MediaDir> mediaDirs,String dirName){
-        for(int i=0;i<mediaDirs.size();i++){
-            MediaDir mediaDir=mediaDirs.get(i);
-            if( mediaDir.name.equals(dirName)) {
+    public int hasDir(ArrayList<Folder> folders, String dirName){
+        for(int i = 0; i< folders.size(); i++){
+            Folder folder = folders.get(i);
+            if( folder.name.equals(dirName)) {
                 return i;
             }
         }

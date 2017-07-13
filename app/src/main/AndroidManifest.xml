@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:name="com.dmcbig.mediapicker.PickerActivity" />
     </application>
 

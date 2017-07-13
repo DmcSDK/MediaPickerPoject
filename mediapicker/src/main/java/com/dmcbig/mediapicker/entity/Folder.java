@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by dmcBig on 2017/7/4.
  */
 
-public class MediaDir implements Parcelable {
+public class Folder implements Parcelable {
 
     public String name;
 
@@ -21,7 +21,7 @@ public class MediaDir implements Parcelable {
         medias.add(media);
     }
 
-    public MediaDir(String name) {
+    public Folder(String name) {
         this.name=name;
     }
 
@@ -43,21 +43,21 @@ public class MediaDir implements Parcelable {
     }
 
 
-    protected MediaDir(Parcel in) {
+    protected Folder(Parcel in) {
         this.name = in.readString();
         this.count = in.readInt();
         this.medias = in.createTypedArrayList(Media.CREATOR);
     }
 
-    public static final Parcelable.Creator<MediaDir> CREATOR = new Parcelable.Creator<MediaDir>() {
+    public static final Parcelable.Creator<Folder> CREATOR = new Parcelable.Creator<Folder>() {
         @Override
-        public MediaDir createFromParcel(Parcel source) {
-            return new MediaDir(source);
+        public Folder createFromParcel(Parcel source) {
+            return new Folder(source);
         }
 
         @Override
-        public MediaDir[] newArray(int size) {
-            return new MediaDir[size];
+        public Folder[] newArray(int size) {
+            return new Folder[size];
         }
     };
 }
