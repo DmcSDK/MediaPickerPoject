@@ -89,6 +89,7 @@ public class MediaLoader implements LoaderManager.LoaderCallbacks{
             }
         }
         mLoader.onData(folders);
+        cursor.close();
     }
 
     public String getParent(String path) {

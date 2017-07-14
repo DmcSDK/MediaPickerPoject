@@ -49,12 +49,6 @@ public class PickerActivity extends Activity implements DataCallback {
         ArrayList<Media> medias =new ArrayList<>();
         gridAdapter =new  MediaGridAdapter(medias,this);
         recyclerView.setAdapter(gridAdapter);
-        gridAdapter.setOnItemClickListener(new MediaGridAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View view, Media data) {
-
-            }
-        });
     }
 
     void getMediaData(int type){
@@ -70,7 +64,13 @@ public class PickerActivity extends Activity implements DataCallback {
     }
 
     void setView(ArrayList<Folder> list){
+        gridAdapter.updateAdapter(list.get(0).getMedias());
+        gridAdapter.setOnItemClickListener(new MediaGridAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, Media data,ArrayList<Media> selectMedias) {
 
+            }
+        });
     }
 
     @Override
