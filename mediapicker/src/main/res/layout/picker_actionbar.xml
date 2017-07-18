@@ -29,17 +29,17 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@id/btn_back"
-        android:text="选择图片"
+        android:text="@string/select_title"
         android:textColor="#ffffff"
         android:textSize="16dp"/>
 
     <Button
-        android:id="@+id/commit"
+        android:id="@+id/done"
         android:background="@drawable/action_btn"
         android:minHeight="1dp"
         android:enabled="false"
         android:minWidth="1dp"
-        android:text="完成"
+        android:text="@string/done"
         android:layout_marginRight="9dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"

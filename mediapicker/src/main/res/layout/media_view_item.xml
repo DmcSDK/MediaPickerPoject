@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="12sp"
-            android:text="视频"/>
+            android:text="@string/video"/>
         <TextView
             android:id="@+id/textView_size"
             android:layout_marginRight="6dp"

@@ -8,11 +8,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-
 import com.dmcbig.mediapicker.R;
 import com.dmcbig.mediapicker.entity.Folder;
 import com.dmcbig.mediapicker.entity.Media;
-
 import java.util.ArrayList;
 
 
@@ -71,13 +69,15 @@ public class MediaLoader implements LoaderManager.LoaderCallbacks{
             long dateTime = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_ADDED));
             int mediaType = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE));
             double size= cursor.getDouble(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE));
-            if (size < 1) continue;
             int id= cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID));
-            String dirName=getParent(path);
 
+            if (size < 1) continue;
+            String dirName=getParent(path);
             Media media=new Media(path,name,dateTime,mediaType,size,id,dirName);
             allFolder.addMedias(media);
-            if(mediaType==3){allVideoDir.addMedias(media);}
+            if(mediaType==3){
+                allVideoDir.addMedias(media);
+            }
 
             int index=hasDir(folders,dirName);
             if(index!=-1){

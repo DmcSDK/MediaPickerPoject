@@ -39,8 +39,14 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
     Context context;
     FileUtils fileUtils=new FileUtils();
     ArrayList<Media> selectMedias=new ArrayList<>();
-
-    public  MediaGridAdapter( ArrayList<Media> list,Context context){
+    int maxSelect=9;
+    public  MediaGridAdapter( ArrayList<Media> list,Context context,ArrayList<Media> select,int max){
+        if(select!=null){
+            this.selectMedias=select;
+        }
+        if(max!=0){
+            this.maxSelect=max;
+        }
         this.medias=list;
         this.context=context;
     }
@@ -86,11 +92,11 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
         holder.media_image.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-//                 if(mOnItemClickListener!=null){
-//                     mOnItemClickListener.onItemClick(v,media );
-//                 }
-//                 holder.mask_view.setVisibility(isSelect(media)>=0?View.INVISIBLE:View.VISIBLE);
-//                 setSelectMedias(media);
+                 if(mOnItemClickListener!=null){
+                     mOnItemClickListener.onItemClick(v,media,selectMedias);
+                 }
+                 holder.mask_view.setVisibility(isSelect(media)>=0?View.INVISIBLE:View.VISIBLE);
+                 setSelectMedias(media);
              }
          });
     }
