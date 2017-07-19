@@ -2,31 +2,21 @@ package com.dmcbig.mediapicker.adapter;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.media.MediaMetadataRetriever;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DecodeFormat;
-import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
-import com.bumptech.glide.load.resource.bitmap.VideoBitmapDecoder;
 import com.dmcbig.mediapicker.R;
 import com.dmcbig.mediapicker.entity.Media;
 import com.dmcbig.mediapicker.utils.FileUtils;
 
-
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -39,14 +29,13 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
     Context context;
     FileUtils fileUtils=new FileUtils();
     ArrayList<Media> selectMedias=new ArrayList<>();
-    int maxSelect=9;
-    public  MediaGridAdapter( ArrayList<Media> list,Context context,ArrayList<Media> select,int max){
+    int maxSelect,maxSize;
+    public  MediaGridAdapter( ArrayList<Media> list,Context context,ArrayList<Media> select,int max,int maxSize){
         if(select!=null){
             this.selectMedias=select;
         }
-        if(max!=0){
-            this.maxSelect=max;
-        }
+        this.maxSelect=max;
+        this.maxSize=maxSize;
         this.medias=list;
         this.context=context;
     }
@@ -65,7 +54,6 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
             video_info = (RelativeLayout) view.findViewById(R.id.video_info);
             textView_size = (TextView) view.findViewById(R.id.textView_size);
         }
-
     }
 
     @Override
@@ -82,24 +70,42 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
         Glide.with(context)
                 .load(mediaUri)
                 .into(holder.media_image);
+
         if(media.mediaType==3){
             holder.video_info.setVisibility(View.VISIBLE);
             holder.textView_size.setText(fileUtils.getSizeByUnit(media.size));
         }else{
             holder.video_info.setVisibility(View.INVISIBLE);
         }
-        holder.mask_view.setVisibility(isSelect(media)>=0?View.VISIBLE:View.INVISIBLE);
+
+        int isSelect=isSelect(media);
+        holder.mask_view.setVisibility(isSelect>=0?View.VISIBLE:View.INVISIBLE);
+        holder.check_image.setImageDrawable(isSelect>=0? ContextCompat.getDrawable(context,R.drawable.btn_selected):ContextCompat.getDrawable(context,R.drawable.btn_unselected));
+
+
         holder.media_image.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 if(mOnItemClickListener!=null){
-                     mOnItemClickListener.onItemClick(v,media,selectMedias);
+
+             int isSelect=isSelect(media);
+             if(selectMedias.size()>=maxSelect&&isSelect<0){
+                 Toast.makeText(context,context.getString(R.string.msg_amount_limit),Toast.LENGTH_SHORT).show();
+             }else{
+                 if(media.size>1024*1024*maxSize){
+                     Toast.makeText(context,context.getString(R.string.msg_size_limit)+maxSize+"M",Toast.LENGTH_LONG).show();
+                 }else {
+                     holder.mask_view.setVisibility(isSelect >= 0 ? View.INVISIBLE : View.VISIBLE);
+                     holder.check_image.setImageDrawable(isSelect >= 0 ? ContextCompat.getDrawable(context, R.drawable.btn_unselected) : ContextCompat.getDrawable(context, R.drawable.btn_selected));
+                     setSelectMedias(media);
+                     mOnItemClickListener.onItemClick(v, media, selectMedias);
                  }
-                 holder.mask_view.setVisibility(isSelect(media)>=0?View.INVISIBLE:View.VISIBLE);
-                 setSelectMedias(media);
+             }
+
              }
          });
     }
+
+
 
     public void setSelectMedias(Media media){
         int index=isSelect(media);
@@ -110,6 +116,11 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
         }
     }
 
+    /**
+     *
+     * @param media
+     * @return 大于等于0 就是表示以选择，返回的是在selectMedias中的下标
+     */
     public int isSelect(Media media){
         int is=-1;
         if(selectMedias.size()<=0){

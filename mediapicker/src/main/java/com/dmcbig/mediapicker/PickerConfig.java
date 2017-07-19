@@ -7,8 +7,16 @@ package com.dmcbig.mediapicker;
 public class PickerConfig {
     public  static  final  String LOG_TAG="MediaPicker";
 
-    /** 最大图片选择次数，int类型，默认9 */
+    /** 最大图片选择次数，int类型，默认40*/
     public static final String MAX_SELECT_COUNT = "max_select_count";
+
+    public static final int DEFAULT_SELECTED_MAX_COUNT = 40;
+
+    /** 最大文件大小，int类型，默认180m*/
+    public static final String MAX_SELECT_SIZE = "max_select_size";
+
+    public static final int DEFAULT_SELECTED_MAX_SIZE = 180;
+
     /** 图片选择模式，默认多选 */
     public static final String SELECT_MODE = "select_mode";
     /** 是否显示相机，默认显示 */
@@ -22,4 +30,5 @@ public class PickerConfig {
 
     public static final int PICKER_IMAGE = 100;
     public static final int PICKER_IMAGE_VIDEO = 101;
+
 }
