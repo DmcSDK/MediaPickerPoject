@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">MediaPicker</string>
     <string name="all_dir_name">All Image and Video</string>
+    <string name="all_image">All Image</string>
     <string name="select_title">Select Image and Video</string>
+    <string name="select_image_title">Select Image</string>
     <string name="video_dir_name">All Video</string>
     <string name="msg_amount_limit">Has reached the maximum number of choices</string>
     <string name="msg_size_limit">The maximum file size is only</string>

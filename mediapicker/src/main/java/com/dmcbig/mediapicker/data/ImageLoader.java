@@ -4,9 +4,16 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+
+import com.dmcbig.mediapicker.R;
+import com.dmcbig.mediapicker.entity.Folder;
+import com.dmcbig.mediapicker.entity.Media;
+
+import java.util.ArrayList;
 
 /**
  * Created by dmcBig on 2017/7/3.
@@ -45,11 +52,53 @@ public class ImageLoader implements LoaderManager.LoaderCallbacks{
 
     @Override
     public void onLoadFinished(Loader loader, Object o) {
+        ArrayList<Folder> folders =new ArrayList<>();
+        Folder allFolder =new Folder(mContext.getResources().getString(R.string.all_image));
+        folders.add(allFolder);
+        Cursor cursor=(Cursor) o;
+        while (cursor.moveToNext()){
+            String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+            long dateTime = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED));
+            int mediaType = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE));
+            double size= cursor.getDouble(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
+            int id= cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
 
+            if (size < 1) continue;
+            String dirName=getParent(path);
+            Media media=new Media(path,name,dateTime,mediaType,size,id,dirName);
+            allFolder.addMedias(media);
+
+            int index=hasDir(folders,dirName);
+            if(index!=-1){
+                folders.get(index).addMedias(media);
+            }else{
+                Folder folder =new Folder(dirName);
+                folder.addMedias(media);
+                folders.add(folder);
+            }
+        }
+        mLoader.onData(folders);
+        cursor.close();
     }
 
     @Override
     public void onLoaderReset(Loader loader) {
 
+    }
+
+    public String getParent(String path) {
+        String sp[]=path.split("/");
+        return sp[sp.length-2];
+    }
+
+    public int hasDir(ArrayList<Folder> folders, String dirName){
+        for(int i = 0; i< folders.size(); i++){
+            Folder folder = folders.get(i);
+            if( folder.name.equals(dirName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

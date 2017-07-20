@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dmcbig.mediapicker.PickerActivity;
+import com.dmcbig.mediapicker.PickerConfig;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(MainActivity.this, PickerActivity.class);
+                intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE);
                 MainActivity.this.startActivity(intent);
             }
         });

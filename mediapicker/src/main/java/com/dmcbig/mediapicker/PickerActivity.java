@@ -13,12 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dmcbig.mediapicker.adapter.FolderAdapter;
 import com.dmcbig.mediapicker.adapter.MediaGridAdapter;
 import com.dmcbig.mediapicker.adapter.SpacingDecoration;
 import com.dmcbig.mediapicker.data.DataCallback;
+import com.dmcbig.mediapicker.data.ImageLoader;
 import com.dmcbig.mediapicker.data.MediaLoader;
 import com.dmcbig.mediapicker.entity.Media;
 import com.dmcbig.mediapicker.entity.Folder;
@@ -34,25 +36,27 @@ public class PickerActivity extends Activity implements DataCallback ,View.OnCli
 
     Intent argsIntent;
     RecyclerView recyclerView;
-    Button done,category_btn;
+    Button done,category_btn,preview;
     MediaGridAdapter gridAdapter;
     ListPopupWindow mFolderPopupWindow;
     private FolderAdapter mFolderAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        argsIntent=getIntent();
         setContentView(R.layout.main);
         recyclerView=(RecyclerView) findViewById(R.id.recycler_view);
         findViewById(R.id.btn_back).setOnClickListener(this);
+        ((TextView)findViewById(R.id.bar_title)).setText(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,101)==101?getResources().getString(R.string.select_title):getResources().getString(R.string.select_image_title));
         done=(Button) findViewById(R.id.done);
         category_btn=(Button) findViewById(R.id.category_btn);
+        preview=(Button) findViewById(R.id.preview);
         done.setOnClickListener(this);
         category_btn.setOnClickListener(this);
         //get view end
-        argsIntent=getIntent();
         createAdapter();
         createFolderAdapter();
-        getMediaData(PickerConfig.PICKER_IMAGE);
+        getMediaData(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,101));
     }
 
     void createAdapter(){
@@ -64,7 +68,7 @@ public class PickerActivity extends Activity implements DataCallback ,View.OnCli
         recyclerView.setHasFixedSize(true);
         //创建并设置Adapter
         ArrayList<Media> medias =new ArrayList<>();
-        ArrayList<Media> select=argsIntent.getParcelableArrayListExtra("selects");
+        ArrayList<Media> select=argsIntent.getParcelableArrayListExtra(PickerConfig.DEFAULT_SELECTED_LIST);
         int maxSelect=argsIntent.getIntExtra(PickerConfig.MAX_SELECT_COUNT,PickerConfig.DEFAULT_SELECTED_MAX_COUNT);
         int maxSize=argsIntent.getIntExtra(PickerConfig.MAX_SELECT_SIZE,PickerConfig.DEFAULT_SELECTED_MAX_SIZE);
         gridAdapter =new  MediaGridAdapter(medias,this,select,maxSelect,maxSize);
@@ -84,6 +88,7 @@ public class PickerActivity extends Activity implements DataCallback ,View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mFolderAdapter.setSelectIndex(position);
+                category_btn.setText(mFolderAdapter.getItem(position).name);
                 gridAdapter.updateAdapter(mFolderAdapter.getSelectMedias());
                 mFolderPopupWindow.dismiss();
             }
@@ -91,12 +96,17 @@ public class PickerActivity extends Activity implements DataCallback ,View.OnCli
     }
 
     void getMediaData(int type){
-        getLoaderManager().initLoader(type,null,new MediaLoader(this,this));
+        if(type==PickerConfig.PICKER_IMAGE_VIDEO){
+            getLoaderManager().initLoader(type,null,new MediaLoader(this,this));
+        }else{
+            getLoaderManager().initLoader(type,null,new ImageLoader(this,this));
+        }
     }
 
     @Override
     public void onData( ArrayList<Folder> list) {
         setView(list);
+        category_btn.setText(list.get(0).name);
         mFolderAdapter.updateAdapter(list);
     }
 

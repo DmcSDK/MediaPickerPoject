@@ -67,6 +67,7 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Media media=medias.get(position);
         Uri mediaUri = Uri.parse("file://" + media.path);
+
         Glide.with(context)
                 .load(mediaUri)
                 .into(holder.media_image);
