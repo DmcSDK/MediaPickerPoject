@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by dmcBig on 2017/6/9.
  */
 
-public class MediaLoader implements LoaderManager.LoaderCallbacks{
+public class MediaLoader extends LoaderM implements LoaderManager.LoaderCallbacks{
     String[] MEDIA_PROJECTION = {
             MediaStore.Files.FileColumns.DATA,
             MediaStore.Files.FileColumns.DISPLAY_NAME,
@@ -92,20 +92,6 @@ public class MediaLoader implements LoaderManager.LoaderCallbacks{
         cursor.close();
     }
 
-    public String getParent(String path) {
-        String sp[]=path.split("/");
-        return sp[sp.length-2];
-    }
-
-    public int hasDir(ArrayList<Folder> folders, String dirName){
-        for(int i = 0; i< folders.size(); i++){
-            Folder folder = folders.get(i);
-            if( folder.name.equals(dirName)) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
     @Override
     public void onLoaderReset(Loader loader) {
