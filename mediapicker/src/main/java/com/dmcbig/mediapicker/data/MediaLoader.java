@@ -68,7 +68,7 @@ public class MediaLoader extends LoaderM implements LoaderManager.LoaderCallback
             String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME));
             long dateTime = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_ADDED));
             int mediaType = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE));
-            double size= cursor.getDouble(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE));
+            long size= cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE));
             int id= cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID));
 
             if (size < 1) continue;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,7 +93,7 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
              if(selectMedias.size()>=maxSelect&&isSelect<0){
                  Toast.makeText(context,context.getString(R.string.msg_amount_limit),Toast.LENGTH_SHORT).show();
              }else{
-                 if(media.size>1024*1024*maxSize){
+                 if(media.size>(1024*1024*maxSize)){
                      Toast.makeText(context,context.getString(R.string.msg_size_limit)+maxSize+"M",Toast.LENGTH_LONG).show();
                  }else {
                      holder.mask_view.setVisibility(isSelect >= 0 ? View.INVISIBLE : View.VISIBLE);

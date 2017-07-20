@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.dmcbig.mediapicker.R;
 import com.dmcbig.mediapicker.entity.Folder;
@@ -57,11 +58,12 @@ public class ImageLoader extends LoaderM implements LoaderManager.LoaderCallback
         folders.add(allFolder);
         Cursor cursor=(Cursor) o;
         while (cursor.moveToNext()){
+
             String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
             String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
             long dateTime = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED));
             int mediaType = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE));
-            double size= cursor.getDouble(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
+            long size= cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
             int id= cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
 
             if (size < 1) continue;

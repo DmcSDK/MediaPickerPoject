@@ -12,10 +12,10 @@ public class Media implements Parcelable {
     public String name;
     public long time;
     public int mediaType;
-    public  double size;
+    public  long size;
     public  int id;
     public  String parentDir;
-    public Media(String path, String name, long time, int mediaType,double size,int id,String parentDir){
+    public Media(String path, String name, long time, int mediaType,long size,int id,String parentDir){
         this.path = path;
         this.name = name;
         this.time = time;
@@ -47,7 +47,7 @@ public class Media implements Parcelable {
         this.name = in.readString();
         this.time = in.readLong();
         this.mediaType = in.readInt();
-        this.size = in.readDouble();
+        this.size = in.readLong();
         this.id = in.readInt();
         this.parentDir = in.readString();
     }
