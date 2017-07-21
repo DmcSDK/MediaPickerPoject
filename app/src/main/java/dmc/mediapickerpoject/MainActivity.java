@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+
 
 import com.dmcbig.mediapicker.PickerActivity;
 import com.dmcbig.mediapicker.PickerConfig;
 import com.dmcbig.mediapicker.entity.Media;
+
+
 
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(com.dmcbig.mediapicker.R.id.text).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.go).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 go();
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
         intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);
-        long maxSize=188743680l;//long long long
+        long maxSize=188743680L;//long long long
         intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize);
         intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);
         intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,select);
