@@ -3,6 +3,21 @@ Media Picker like Wechat
 
 How do I use?
 -------------------
+
+use Gradle:
+
+```gradle
+repositories {
+  mavenCentral() // jcenter() works as well because it pulls from Maven Central
+}
+
+dependencies {
+    compile 'com.dmcBig:mediapicker:1.0'
+}
+```
+
+code:
+
     ArrayList<Media> select;
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
