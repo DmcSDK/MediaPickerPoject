@@ -36,3 +36,8 @@ code:
             select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
         }
     }
+
+# Example
+![](https://github.com/dmcBig/MediaPickerPoject/blob/master/Screenshots/Screenshots1.png)
+![](https://github.com/dmcBig/MediaPickerPoject/blob/master/Screenshots/Screenshots2.png)
+![](https://github.com/dmcBig/MediaPickerPoject/blob/master/Screenshots/Screenshots3.png)
