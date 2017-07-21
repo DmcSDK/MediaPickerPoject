@@ -15,7 +15,7 @@ public class PickerConfig {
     /** 最大文件大小，int类型，默认180m*/
     public static final String MAX_SELECT_SIZE = "max_select_size";
 
-    public static final int DEFAULT_SELECTED_MAX_SIZE = 3072;
+    public static final long DEFAULT_SELECTED_MAX_SIZE = 188743680;
 
     /** 图片选择模式，默认多选 */
     public static final String SELECT_MODE = "select_mode";

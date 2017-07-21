@@ -30,8 +30,8 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
     Context context;
     FileUtils fileUtils=new FileUtils();
     ArrayList<Media> selectMedias=new ArrayList<>();
-    int maxSelect,maxSize;
-    public  MediaGridAdapter( ArrayList<Media> list,Context context,ArrayList<Media> select,int max,int maxSize){
+    long maxSelect,maxSize;
+    public  MediaGridAdapter( ArrayList<Media> list,Context context,ArrayList<Media> select,int max,long maxSize){
         if(select!=null){
             this.selectMedias=select;
         }
@@ -93,8 +93,8 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
              if(selectMedias.size()>=maxSelect&&isSelect<0){
                  Toast.makeText(context,context.getString(R.string.msg_amount_limit),Toast.LENGTH_SHORT).show();
              }else{
-                 if(media.size>(1024*1024*maxSize)){
-                     Toast.makeText(context,context.getString(R.string.msg_size_limit)+maxSize+"M",Toast.LENGTH_LONG).show();
+                 if(media.size>maxSize){
+                     Toast.makeText(context,context.getString(R.string.msg_size_limit)+(FileUtils.fileSize(maxSize)),Toast.LENGTH_LONG).show();
                  }else {
                      holder.mask_view.setVisibility(isSelect >= 0 ? View.INVISIBLE : View.VISIBLE);
                      holder.check_image.setImageDrawable(isSelect >= 0 ? ContextCompat.getDrawable(context, R.drawable.btn_unselected) : ContextCompat.getDrawable(context, R.drawable.btn_selected));

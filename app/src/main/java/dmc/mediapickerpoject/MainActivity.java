@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(MainActivity.this, PickerActivity.class);
-                intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE);
+                intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);
+                intent.putExtra(PickerConfig.MAX_SELECT_SIZE,1024l);
                 MainActivity.this.startActivity(intent);
             }
         });
