@@ -46,7 +46,7 @@ bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
     pkg {
-        repo = 'MediaPicker'//自己创建的仓库名字
+        repo = 'dmcBig'//自己创建的仓库名字
         name = 'MediaPicker'//上传到JCenter的名字,最终引用的名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
