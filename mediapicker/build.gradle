@@ -51,7 +51,7 @@ bintray {
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ['Apache-2.0']//不能随便写，只能是仓库创建时选择的license type
-        userOrg = 'dmc' //自己创建的organization名称
+        userOrg = 'yuanwu' //自己创建的organization名称
         publish = true // 是否是公开项目，公开别人可以引用
 
         version {
