@@ -8,24 +8,43 @@ import android.widget.TextView;
 
 import com.dmcbig.mediapicker.PickerActivity;
 import com.dmcbig.mediapicker.PickerConfig;
+import com.dmcbig.mediapicker.entity.Media;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    ArrayList<Media> select;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView textView=(TextView) findViewById(com.dmcbig.mediapicker.R.id.text);
-        textView.setOnClickListener(new View.OnClickListener() {
+
+        findViewById(com.dmcbig.mediapicker.R.id.text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(MainActivity.this, PickerActivity.class);
-                intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);
-                intent.putExtra(PickerConfig.MAX_SELECT_SIZE,1024l);
-                MainActivity.this.startActivity(intent);
+                go();
             }
         });
-
     }
 
+    void go(){
+        Intent intent =new Intent(MainActivity.this, PickerActivity.class);
+        intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);
+        long maxSize=188743680l;//long long long
+        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize);
+        intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);
+        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,select);
+        MainActivity.this.startActivityForResult(intent,200);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==200&&resultCode==PickerConfig.RESULT_CODE){
+            select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
+        }
+    }
 }

@@ -134,8 +134,8 @@ public class PickerActivity extends Activity implements DataCallback ,View.OnCli
             }
         }else if(id==R.id.done){
             Intent intent=new Intent();
-            intent.putParcelableArrayListExtra("selects",gridAdapter.getSelectMedias());
-            setResult(200,intent);
+            intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,gridAdapter.getSelectMedias());
+            setResult(PickerConfig.RESULT_CODE,intent);
             finish();
         }
     }
