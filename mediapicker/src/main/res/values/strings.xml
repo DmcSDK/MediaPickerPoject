@@ -11,4 +11,5 @@
     <string name="count_string"></string>
     <string name="preview">preview</string>
     <string name="video">video</string>
+    <string name="READ_EXTERNAL_STORAGE">Need to open read storage permissions</string>
 </resources>
