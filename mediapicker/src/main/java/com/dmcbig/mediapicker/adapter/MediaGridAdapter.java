@@ -9,14 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.dmcbig.mediapicker.PickerConfig;
 import com.dmcbig.mediapicker.R;
 import com.dmcbig.mediapicker.entity.Media;
 import com.dmcbig.mediapicker.utils.FileUtils;
+import com.dmcbig.mediapicker.utils.ScreenUtils;
 
 import java.util.ArrayList;
 
@@ -54,7 +57,12 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
             mask_view =  view.findViewById(R.id.mask_view);
             video_info = (RelativeLayout) view.findViewById(R.id.video_info);
             textView_size = (TextView) view.findViewById(R.id.textView_size);
+            itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getItemWidth())); //让图片是个正方形
         }
+    }
+
+    int getItemWidth(){
+        return  (ScreenUtils.getScreenWidth(context)/ PickerConfig.GridSpanCount)-(PickerConfig.GridSpanCount*(PickerConfig.GridSpace)-1);
     }
 
     @Override
@@ -138,6 +146,8 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
         return is;
     }
 
+
+
     public void updateAdapter( ArrayList<Media> list){
         this.medias=list;
         notifyDataSetChanged();
@@ -151,6 +161,7 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
     public ArrayList<Media> getSelectMedias(){
         return  selectMedias;
     }
+
     @Override
     public int getItemCount() {
         return medias.size();

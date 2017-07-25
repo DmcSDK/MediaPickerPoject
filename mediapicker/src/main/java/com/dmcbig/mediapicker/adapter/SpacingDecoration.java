@@ -14,9 +14,9 @@ public class SpacingDecoration  extends RecyclerView.ItemDecoration {
     private int space;
     private int spanCount;
 
-    public SpacingDecoration(int spanCount) {
+    public SpacingDecoration(int spanCount,int space) {
         this.spanCount=spanCount;
-        this.space=4;
+        this.space=space;
     }
 
     @Override

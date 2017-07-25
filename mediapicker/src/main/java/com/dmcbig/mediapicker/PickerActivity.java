@@ -53,7 +53,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         setContentView(R.layout.main);
         recyclerView=(RecyclerView) findViewById(R.id.recycler_view);
         findViewById(R.id.btn_back).setOnClickListener(this);
-        ((TextView)findViewById(R.id.bar_title)).setText(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,101)==101?getString(R.string.select_title):getString(R.string.select_image_title));
+        ((TextView)findViewById(R.id.bar_title)).setText(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO)==PickerConfig.PICKER_IMAGE_VIDEO?getString(R.string.select_title):getString(R.string.select_image_title));
         done=(Button) findViewById(R.id.done);
         category_btn=(Button) findViewById(R.id.category_btn);
         preview=(Button) findViewById(R.id.preview);
@@ -62,14 +62,14 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         //get view end
         createAdapter();
         createFolderAdapter();
-        getMediaData(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,101));
+        getMediaData(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO));
     }
 
     void createAdapter(){
         //创建默认的线性LayoutManager
-        GridLayoutManager mLayoutManager = new GridLayoutManager(this,3);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(this,PickerConfig.GridSpanCount);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new SpacingDecoration(3));
+        recyclerView.addItemDecoration(new SpacingDecoration(PickerConfig.GridSpanCount,PickerConfig.GridSpace));
         //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
         recyclerView.setHasFixedSize(true);
         //创建并设置Adapter
