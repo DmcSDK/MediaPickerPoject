@@ -62,7 +62,7 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
     }
 
     int getItemWidth(){
-        return  (ScreenUtils.getScreenWidth(context)/ PickerConfig.GridSpanCount);
+        return  (ScreenUtils.getScreenWidth(context)/ PickerConfig.GridSpanCount)-PickerConfig.GridSpanCount;
     }
 
     @Override

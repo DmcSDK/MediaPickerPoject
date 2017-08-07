@@ -24,8 +24,7 @@ public class PickerConfig {
     public static final String EXTRA_RESULT = "select_result";
     /** 默认选择集 */
     public static final String DEFAULT_SELECTED_LIST = "default_list";
-    /** 选择文件类型 */
-    public static final String FILE_TYPE = "file_type";
+
     public static final int RESULT_CODE = 19901026;
     public static final int PICKER_IMAGE = 100;
     public static final int PICKER_IMAGE_VIDEO = 101;

@@ -1,7 +1,6 @@
 package com.dmcbig.mediapicker;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -25,14 +24,15 @@ import com.dmcbig.mediapicker.adapter.SpacingDecoration;
 import com.dmcbig.mediapicker.data.DataCallback;
 import com.dmcbig.mediapicker.data.ImageLoader;
 import com.dmcbig.mediapicker.data.MediaLoader;
-import com.dmcbig.mediapicker.entity.Media;
 import com.dmcbig.mediapicker.entity.Folder;
+import com.dmcbig.mediapicker.entity.Media;
 import com.dmcbig.mediapicker.utils.ScreenUtils;
 
 import java.util.ArrayList;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
+
 
 /**
  * Created by dmcBig on 2017/6/9.
@@ -62,7 +62,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         //get view end
         createAdapter();
         createFolderAdapter();
-        getMediaData(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO));
+        getMediaData();
     }
 
     void createAdapter(){
@@ -101,9 +101,10 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         });
     }
 
-    @AfterPermissionGranted(119)
-    void getMediaData(int type){
+   @AfterPermissionGranted(119)
+    void getMediaData(){
         if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            int type=argsIntent.getIntExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);
             if(type==PickerConfig.PICKER_IMAGE_VIDEO){
                 getLoaderManager().initLoader(type,null,new MediaLoader(this,this));
             }else{
