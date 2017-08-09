@@ -59,6 +59,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         preview=(Button) findViewById(R.id.preview);
         done.setOnClickListener(this);
         category_btn.setOnClickListener(this);
+        preview.setOnClickListener(this);
         //get view end
         createAdapter();
         createFolderAdapter();
@@ -129,6 +130,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
             @Override
             public void onItemClick(View view, Media data,ArrayList<Media> selectMedias) {
                 done.setText(getString(R.string.done)+"("+gridAdapter.getSelectMedias().size()+"/"+max+")");
+                preview.setText(getString(R.string.preview)+"("+gridAdapter.getSelectMedias().size()+")");
             }
         });
     }
@@ -149,6 +151,10 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
             intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,gridAdapter.getSelectMedias());
             setResult(PickerConfig.RESULT_CODE,intent);
             finish();
+        }else if(id==R.id.preview){
+            Intent intent =new Intent(this, PreviewActivity.class);
+            intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,gridAdapter.getSelectMedias());
+            this.startActivityForResult(intent,200);
         }
     }
 
@@ -168,5 +174,15 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==200&&resultCode==PickerConfig.RESULT_CODE){
+//            ArrayList<Media> select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
+//            gridAdapter.updateSelectAdapter(select);
+            finish();
+        }
     }
 }

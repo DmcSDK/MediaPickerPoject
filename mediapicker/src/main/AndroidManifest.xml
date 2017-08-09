@@ -9,6 +9,11 @@
             android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:name="com.dmcbig.mediapicker.PickerActivity" />
+        <activity
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name="com.dmcbig.mediapicker.PreviewActivity" />
     </application>
 
 </manifest>

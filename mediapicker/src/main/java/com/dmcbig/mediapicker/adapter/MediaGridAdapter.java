@@ -146,7 +146,12 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
         return is;
     }
 
-
+    public void updateSelectAdapter(ArrayList<Media> select){
+        if(select!=null){
+            this.selectMedias=select;
+        }
+        notifyDataSetChanged();
+    }
 
     public void updateAdapter( ArrayList<Media> list){
         this.medias=list;
