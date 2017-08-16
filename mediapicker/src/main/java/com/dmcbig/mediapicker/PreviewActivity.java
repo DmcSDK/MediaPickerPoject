@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.dmcbig.mediapicker.entity.Folder;
 import com.dmcbig.mediapicker.entity.Media;
+import com.dmcbig.mediapicker.view.PreviewFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,9 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     void setView(ArrayList<Media> list){
+        ArrayList<Fragment> fragmentArrayList=new ArrayList<>();
 
+        AdapterFragment adapterFragment=new AdapterFragment(getSupportFragmentManager(),fragmentArrayList);
     }
 
     @Override

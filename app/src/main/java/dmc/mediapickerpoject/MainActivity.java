@@ -3,6 +3,7 @@ package dmc.mediapickerpoject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==200&&resultCode==PickerConfig.RESULT_CODE){
             select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
+            for(Media media:select){
+                Log.i("media",media.path);
+            }
         }
     }
 }
