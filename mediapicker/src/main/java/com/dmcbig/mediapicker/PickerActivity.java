@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dmcbig.mediapicker.adapter.FolderAdapter;
@@ -149,6 +150,10 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         }else if(id==R.id.done){
             done(gridAdapter.getSelectMedias());
         }else if(id==R.id.preview){
+            if(gridAdapter.getSelectMedias().size()<=0){
+                Toast.makeText(this,getString(R.string.select_null),Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent =new Intent(this, PreviewActivity.class);
             intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,gridAdapter.getSelectMedias());
             this.startActivityForResult(intent,200);

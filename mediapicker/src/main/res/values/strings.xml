@@ -7,6 +7,7 @@
     <string name="video_dir_name">All Video</string>
     <string name="msg_amount_limit">Has reached the maximum number of choices</string>
     <string name="msg_size_limit">The maximum file size is only</string>
+    <string name="select_null">please select file</string>
     <string name="done">done</string>
     <string name="count_string"></string>
     <string name="preview">preview</string>
