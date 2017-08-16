@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">媒体选择器</string>
+    <string name="library_name">媒体选择器</string>
     <string name="all_dir_name">所有图片和视频</string>
     <string name="all_image">所有图片</string>
     <string name="select_title">选择图片和视频</string>

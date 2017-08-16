@@ -147,10 +147,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
                 mFolderPopupWindow.show();
             }
         }else if(id==R.id.done){
-            Intent intent=new Intent();
-            intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,gridAdapter.getSelectMedias());
-            setResult(PickerConfig.RESULT_CODE,intent);
-            finish();
+            done(gridAdapter.getSelectMedias());
         }else if(id==R.id.preview){
             Intent intent =new Intent(this, PreviewActivity.class);
             intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,gridAdapter.getSelectMedias());
@@ -158,6 +155,12 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         }
     }
 
+    public void done(ArrayList<Media> selects){
+        Intent intent=new Intent();
+        intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,selects);
+        setResult(PickerConfig.RESULT_CODE,intent);
+        finish();
+    }
 
     @Override
     protected void onDestroy() {
@@ -179,10 +182,13 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==200&&resultCode==PickerConfig.RESULT_CODE){
-//            ArrayList<Media> select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
-//            gridAdapter.updateSelectAdapter(select);
-            finish();
+        if(requestCode==200){
+            ArrayList<Media> selects=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
+            if(resultCode==PickerConfig.RESULT_UPDATE_CODE){
+                gridAdapter.updateSelectAdapter(selects);
+            }else if(resultCode==PickerConfig.RESULT_CODE){
+                done(selects);
+            }
         }
     }
 }
