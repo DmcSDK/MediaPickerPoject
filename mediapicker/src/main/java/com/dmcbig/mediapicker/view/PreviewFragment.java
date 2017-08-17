@@ -48,15 +48,15 @@ public class PreviewFragment extends Fragment{
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view,savedInstanceState);
         Media media=getArguments().getParcelable("media");
         play_view=(ImageView) view.findViewById(R.id.play_view);
-        setPlayView(media);
         mPhotoView = (PhotoView) view.findViewById(R.id.photoview);
         mAttacher = new PhotoViewAttacher(mPhotoView);
         mAttacher.setRotatable(true);
         mAttacher.setToRightAngle(true);
-        mAttacher.update();
 
+        setPlayView(media);
         Glide.with(getActivity())
                 .load(media.path)
                 .into(mPhotoView);

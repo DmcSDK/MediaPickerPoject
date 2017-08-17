@@ -46,7 +46,6 @@
         android:layout_above="@+id/footer"
         android:layout_below="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
