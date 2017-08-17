@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -70,24 +71,53 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         int id=v.getId();
         if(id==R.id.btn_back){
-            done(default_selects,PickerConfig.RESULT_UPDATE_CODE);
+            done(selects,PickerConfig.RESULT_UPDATE_CODE);
         }else if(id==R.id.done){
-            done(default_selects,PickerConfig.RESULT_CODE);
+            done(selects,PickerConfig.RESULT_CODE);
         }else if(id==R.id.check_image){
-
+            Media media=default_selects.get(viewpager.getCurrentItem());
+            int select=isSelect(media);
+            if(select<0){
+                check_image.setImageDrawable( ContextCompat.getDrawable(this, R.drawable.btn_selected));
+                selects.add(media);
+            }else{
+                check_image.setImageDrawable( ContextCompat.getDrawable(this, R.drawable.btn_unselected));
+                selects.remove(select);
+            }
+            setDoneView(selects.size());
         }
     }
 
-    public void done(ArrayList<Media> default_selects,int code){
+    /**
+     *
+     * @param media
+     * @return 大于等于0 就是表示以选择，返回的是在selectMedias中的下标
+     */
+    public int isSelect(Media media){
+        int is=-1;
+        if(selects.size()<=0){
+            return is;
+        }
+        for(int i=0;i<selects.size();i++){
+            Media m=selects.get(i);
+            if(m.path.equals(media.path)){
+                is=i;
+                break;
+            }
+        }
+        return is;
+    }
+
+    public void done(ArrayList<Media> selects,int code){
         Intent intent=new Intent();
-        intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,default_selects);
+        intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,selects);
         setResult(code,intent);
         finish();
     }
 
     @Override
     public void onBackPressed() {
-        done(default_selects,PickerConfig.RESULT_UPDATE_CODE);
+        done(selects,PickerConfig.RESULT_UPDATE_CODE);
         super.onBackPressed();
     }
 
@@ -116,6 +146,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onPageSelected(int position) {
         bar_title.setText((position + 1) + "/" + default_selects.size());
+        check_image.setImageDrawable(isSelect(default_selects.get(position))< 0 ? ContextCompat.getDrawable(this, R.drawable.btn_unselected) : ContextCompat.getDrawable(this, R.drawable.btn_selected));
     }
 
     @Override

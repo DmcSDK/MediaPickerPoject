@@ -34,7 +34,7 @@
             android:layout_gravity="top|right"
             android:layout_marginRight="5.5dp"
             android:layout_marginTop="5.5dp"
-            android:src="@drawable/btn_unselected" />
+            android:src="@drawable/btn_selected" />
 
     </RelativeLayout>
 
