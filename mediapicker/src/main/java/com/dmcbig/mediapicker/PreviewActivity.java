@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ import java.util.List;
 public class PreviewActivity extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener{
 
     Button done;
-    RelativeLayout check_layout;
+    LinearLayout check_layout;
     ImageView check_image;
     ViewPager viewpager;
     TextView bar_title;
@@ -42,7 +43,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.preview_main);
         findViewById(R.id.btn_back).setOnClickListener(this);
         check_image=(ImageView) findViewById(R.id.check_image);
-        check_layout=(RelativeLayout) findViewById(R.id.check_layout);
+        check_layout=(LinearLayout) findViewById(R.id.check_layout);
         check_layout.setOnClickListener(this);
         bar_title=(TextView) findViewById(R.id.bar_title);
         done=(Button) findViewById(R.id.done);
