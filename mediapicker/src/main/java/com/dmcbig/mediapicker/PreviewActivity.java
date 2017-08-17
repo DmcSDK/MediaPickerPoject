@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dmcbig.mediapicker.entity.Folder;
@@ -30,6 +31,7 @@ import java.util.List;
 public class PreviewActivity extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener{
 
     Button done;
+    RelativeLayout check_layout;
     ImageView check_image;
     ViewPager viewpager;
     TextView bar_title;
@@ -40,7 +42,8 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.preview_main);
         findViewById(R.id.btn_back).setOnClickListener(this);
         check_image=(ImageView) findViewById(R.id.check_image);
-        check_image.setOnClickListener(this);
+        check_layout=(RelativeLayout) findViewById(R.id.check_layout);
+        check_layout.setOnClickListener(this);
         bar_title=(TextView) findViewById(R.id.bar_title);
         done=(Button) findViewById(R.id.done);
         done.setOnClickListener(this);
@@ -74,9 +77,9 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
             done(selects,PickerConfig.RESULT_UPDATE_CODE);
         }else if(id==R.id.done){
             done(selects,PickerConfig.RESULT_CODE);
-        }else if(id==R.id.check_image){
+        }else if(id==R.id.check_layout){
             Media media=default_selects.get(viewpager.getCurrentItem());
-            int select=isSelect(media);
+            int select=isSelect(media,selects);
             if(select<0){
                 check_image.setImageDrawable( ContextCompat.getDrawable(this, R.drawable.btn_selected));
                 selects.add(media);
@@ -93,13 +96,13 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
      * @param media
      * @return 大于等于0 就是表示以选择，返回的是在selectMedias中的下标
      */
-    public int isSelect(Media media){
+    public int isSelect(Media media,ArrayList<Media> list){
         int is=-1;
-        if(selects.size()<=0){
+        if(list.size()<=0){
             return is;
         }
-        for(int i=0;i<selects.size();i++){
-            Media m=selects.get(i);
+        for(int i=0;i<list.size();i++){
+            Media m=list.get(i);
             if(m.path.equals(media.path)){
                 is=i;
                 break;
@@ -108,9 +111,9 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         return is;
     }
 
-    public void done(ArrayList<Media> selects,int code){
+    public void done(ArrayList<Media> list,int code){
         Intent intent=new Intent();
-        intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,selects);
+        intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,list);
         setResult(code,intent);
         finish();
     }
@@ -146,7 +149,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onPageSelected(int position) {
         bar_title.setText((position + 1) + "/" + default_selects.size());
-        check_image.setImageDrawable(isSelect(default_selects.get(position))< 0 ? ContextCompat.getDrawable(this, R.drawable.btn_unselected) : ContextCompat.getDrawable(this, R.drawable.btn_selected));
+        check_image.setImageDrawable(isSelect(default_selects.get(position),selects)< 0 ? ContextCompat.getDrawable(this, R.drawable.btn_unselected) : ContextCompat.getDrawable(this, R.drawable.btn_selected));
     }
 
     @Override

@@ -14,27 +14,32 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="48dp">
-
-        <TextView
-            android:id="@+id/select_text"
+        <RelativeLayout
+            android:id="@+id/check_layout"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="@string/select"
-            android:textColor="@color/default_text_color"
-            android:textSize="15sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/check_image"
-            android:layout_toLeftOf="@id/select_text"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_centerVertical="true"
-            android:layout_gravity="top|right"
-            android:layout_marginRight="5.5dp"
-            android:layout_marginTop="5.5dp"
-            android:src="@drawable/btn_selected" />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/select_text"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="@string/select"
+                android:textColor="@color/default_text_color"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/check_image"
+                android:layout_toLeftOf="@id/select_text"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="top|right"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="5.5dp"
+                android:src="@drawable/btn_selected" />
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
@@ -43,7 +48,6 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_above="@+id/footer"
         android:layout_below="@+id/top"
-        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
