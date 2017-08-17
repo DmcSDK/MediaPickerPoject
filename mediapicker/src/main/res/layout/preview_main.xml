@@ -38,11 +38,12 @@
 
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
+    <com.dmcbig.mediapicker.view.HackyViewPager
         android:id="@+id/viewpager"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_above="@+id/footer"
         android:layout_below="@+id/top"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

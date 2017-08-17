@@ -155,6 +155,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
                 return;
             }
             Intent intent =new Intent(this, PreviewActivity.class);
+            intent.putExtra(PickerConfig.MAX_SELECT_COUNT,argsIntent.getIntExtra(PickerConfig.MAX_SELECT_COUNT,PickerConfig.DEFAULT_SELECTED_MAX_COUNT));
             intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,gridAdapter.getSelectMedias());
             this.startActivityForResult(intent,200);
         }
