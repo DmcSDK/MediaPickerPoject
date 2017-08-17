@@ -8,4 +8,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          />
+    <ImageView
+        android:id="@+id/play_view"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/video"/>
 </RelativeLayout>
