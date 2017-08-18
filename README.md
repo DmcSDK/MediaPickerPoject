@@ -15,6 +15,7 @@ dependencies {
     compile 'com.dmcBig:mediapicker:1.2'
 }
 ```
+[Cordova plugin](https://github.com/dmcBig/cordova-plugin-mediaPicker)
 
 code:
 
