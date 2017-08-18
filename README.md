@@ -1,8 +1,9 @@
 # MediaPickerPoject
 Media Picker like Wechat support Cordova
-[Cordova](https://github.com/dmcBig/cordova-plugin-mediaPicker) https://github.com/dmcBig/cordova-plugin-mediaPicker
+
 How do I use?
 -------------------
+[Cordova](https://github.com/dmcBig/cordova-plugin-mediaPicker) https://github.com/dmcBig/cordova-plugin-mediaPicker
 
 use Gradle:
 
