@@ -1,6 +1,6 @@
 # MediaPickerPoject
-Media Picker like Wechat
-
+Media Picker like Wechat support Cordova
+[Cordova](https://github.com/dmcBig/cordova-plugin-mediaPicker) https://github.com/dmcBig/cordova-plugin-mediaPicker
 How do I use?
 -------------------
 
@@ -15,7 +15,6 @@ dependencies {
     compile 'com.dmcBig:mediapicker:1.2'
 }
 ```
-[Cordova plugin](https://github.com/dmcBig/cordova-plugin-mediaPicker)
 
 code:
 
