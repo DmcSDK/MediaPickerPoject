@@ -1,17 +1,34 @@
+<!--<resources>-->
+    <!--<string name="library_name">媒体选择器</string>-->
+    <!--<string name="all_dir_name">所有图片和视频</string>-->
+    <!--<string name="all_image">所有图片</string>-->
+    <!--<string name="select_title">选择图片和视频</string>-->
+    <!--<string name="select_image_title">选择图片</string>-->
+    <!--<string name="video_dir_name">所有视频</string>-->
+    <!--<string name="msg_amount_limit">已达到选择数量上限</string>-->
+    <!--<string name="msg_size_limit">请压缩和剪切后上传，文件最大只支持</string>-->
+    <!--<string name="select_null">请选择文件</string>-->
+    <!--<string name="done">完成</string>-->
+    <!--<string name="count_string">个</string>-->
+    <!--<string name="preview">预览</string>-->
+    <!--<string name="select">选择</string>-->
+    <!--<string name="video">视频</string>-->
+    <!--<string name="READ_EXTERNAL_STORAGE">需要打开读取存储权限</string>-->
+<!--</resources>-->
 <resources>
-    <string name="library_name">媒体选择器</string>
-    <string name="all_dir_name">所有图片和视频</string>
-    <string name="all_image">所有图片</string>
-    <string name="select_title">选择图片和视频</string>
-    <string name="select_image_title">选择图片</string>
-    <string name="video_dir_name">所有视频</string>
-    <string name="msg_amount_limit">已达到选择数量上限</string>
-    <string name="msg_size_limit">请压缩和剪切后上传，文件最大只支持</string>
-    <string name="select_null">请选择文件</string>
-    <string name="done">完成</string>
-    <string name="count_string">个</string>
-    <string name="preview">预览</string>
-    <string name="select">选择</string>
-    <string name="video">视频</string>
-    <string name="READ_EXTERNAL_STORAGE">需要打开读取存储权限</string>
+    <string name="library_name">MediaPicker</string>
+    <string name="all_dir_name">All Image and Video</string>
+    <string name="all_image">All Image</string>
+    <string name="select_title">Select Image and Video</string>
+    <string name="select_image_title">Select Image</string>
+    <string name="video_dir_name">All Video</string>
+    <string name="msg_amount_limit">Has reached the maximum number of choices</string>
+    <string name="msg_size_limit">The maximum file size is only</string>
+    <string name="select_null">please select file</string>
+    <string name="done">done</string>
+    <string name="count_string"></string>
+    <string name="preview">preview</string>
+    <string name="select">select</string>
+    <string name="video">video</string>
+    <string name="READ_EXTERNAL_STORAGE">Need to open read storage permissions</string>
 </resources>
