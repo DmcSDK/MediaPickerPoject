@@ -36,7 +36,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     ImageView check_image;
     ViewPager viewpager;
     TextView bar_title;
-    ArrayList<Media> default_selects,selects;
+    ArrayList<Media> preRawList,selects;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +49,15 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         done=(Button) findViewById(R.id.done);
         done.setOnClickListener(this);
         viewpager=(ViewPager) findViewById(R.id.viewpager);
-        default_selects=getIntent().getParcelableArrayListExtra(PickerConfig.DEFAULT_SELECTED_LIST);
+        preRawList=getIntent().getParcelableArrayListExtra(PickerConfig.PRE_RAW_LIST);
         selects=new ArrayList<>();
-        selects.addAll(default_selects);
-        setView(default_selects);
+        selects.addAll(preRawList);
+        setView(preRawList);
     }
 
     void setView(ArrayList<Media> default_list){
         setDoneView(default_list.size());
-        bar_title.setText(1 + "/" + default_selects.size());
+        bar_title.setText(1 + "/" + preRawList.size());
         ArrayList<Fragment> fragmentArrayList=new ArrayList<>();
         for(Media media:default_list){
             fragmentArrayList.add( PreviewFragment.newInstance(media,""));
@@ -79,7 +79,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         }else if(id==R.id.done){
             done(selects,PickerConfig.RESULT_CODE);
         }else if(id==R.id.check_layout){
-            Media media=default_selects.get(viewpager.getCurrentItem());
+            Media media=preRawList.get(viewpager.getCurrentItem());
             int select=isSelect(media,selects);
             if(select<0){
                 check_image.setImageDrawable( ContextCompat.getDrawable(this, R.drawable.btn_selected));
@@ -149,8 +149,8 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onPageSelected(int position) {
-        bar_title.setText((position + 1) + "/" + default_selects.size());
-        check_image.setImageDrawable(isSelect(default_selects.get(position),selects)< 0 ? ContextCompat.getDrawable(this, R.drawable.btn_unselected) : ContextCompat.getDrawable(this, R.drawable.btn_selected));
+        bar_title.setText((position + 1) + "/" + preRawList.size());
+        check_image.setImageDrawable(isSelect(preRawList.get(position),selects)< 0 ? ContextCompat.getDrawable(this, R.drawable.btn_unselected) : ContextCompat.getDrawable(this, R.drawable.btn_selected));
     }
 
     @Override

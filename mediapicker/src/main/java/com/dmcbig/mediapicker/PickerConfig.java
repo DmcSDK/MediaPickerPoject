@@ -24,7 +24,8 @@ public class PickerConfig {
     public static final String EXTRA_RESULT = "select_result";
     /** 默认选择集 */
     public static final String DEFAULT_SELECTED_LIST = "default_list";
-
+    /** 预览集 */
+    public static final String PRE_RAW_LIST = "pre_raw_List";
     public static final int RESULT_CODE = 19901026;
     public static final int RESULT_UPDATE_CODE = 1990;
     public static final int PICKER_IMAGE = 100;

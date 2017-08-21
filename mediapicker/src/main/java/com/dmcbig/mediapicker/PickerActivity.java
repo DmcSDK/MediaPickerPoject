@@ -125,15 +125,20 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
     }
 
     void setView(ArrayList<Folder> list){
-        final int max=argsIntent.getIntExtra(PickerConfig.MAX_SELECT_COUNT,PickerConfig.DEFAULT_SELECTED_MAX_COUNT);
         gridAdapter.updateAdapter(list.get(0).getMedias());
+        setButtonText();
         gridAdapter.setOnItemClickListener(new MediaGridAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, Media data,ArrayList<Media> selectMedias) {
-                done.setText(getString(R.string.done)+"("+gridAdapter.getSelectMedias().size()+"/"+max+")");
-                preview.setText(getString(R.string.preview)+"("+gridAdapter.getSelectMedias().size()+")");
+                setButtonText();
             }
         });
+    }
+
+    void setButtonText(){
+        int max=argsIntent.getIntExtra(PickerConfig.MAX_SELECT_COUNT,PickerConfig.DEFAULT_SELECTED_MAX_COUNT);
+        done.setText(getString(R.string.done)+"("+gridAdapter.getSelectMedias().size()+"/"+max+")");
+        preview.setText(getString(R.string.preview)+"("+gridAdapter.getSelectMedias().size()+")");
     }
 
     @Override
@@ -156,7 +161,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
             }
             Intent intent =new Intent(this, PreviewActivity.class);
             intent.putExtra(PickerConfig.MAX_SELECT_COUNT,argsIntent.getIntExtra(PickerConfig.MAX_SELECT_COUNT,PickerConfig.DEFAULT_SELECTED_MAX_COUNT));
-            intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,gridAdapter.getSelectMedias());
+            intent.putExtra(PickerConfig.PRE_RAW_LIST,gridAdapter.getSelectMedias());
             this.startActivityForResult(intent,200);
         }
     }
