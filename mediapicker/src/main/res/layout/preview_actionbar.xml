@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="#21282C"
+    android:clickable="true">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:padding="14dp"
+        android:src="@drawable/ic_back"/>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@id/btn_back"
+        android:background="#cc111111"/>
+
+    <TextView
+        android:id="@+id/bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/btn_back"
+        android:text="1/1"
+        android:textColor="#ffffff"
+        android:textSize="16sp"/>
+    <LinearLayout
+        android:id="@+id/check_layout"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/check_image"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/btn_selected" />
+        <TextView
+            android:id="@+id/select_text"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="@string/select"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/default_text_color"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/done"
+        android:background="@drawable/action_btn"
+        android:minHeight="1dp"
+        android:minWidth="1dp"
+        android:text="@string/done"
+        android:layout_marginRight="9dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/default_text_color"
+        android:textSize="14sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
