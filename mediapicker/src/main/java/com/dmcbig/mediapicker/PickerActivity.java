@@ -212,6 +212,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
             ArrayList<Media> selects=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
             if(resultCode==PickerConfig.RESULT_UPDATE_CODE){
                 gridAdapter.updateSelectAdapter(selects);
+                setButtonText();
             }else if(resultCode==PickerConfig.RESULT_CODE){
                 done(selects);
             }

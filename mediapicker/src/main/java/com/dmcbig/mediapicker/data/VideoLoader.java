@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.dmcbig.mediapicker.R;
 import com.dmcbig.mediapicker.entity.Folder;
@@ -40,7 +41,6 @@ public class VideoLoader extends LoaderM implements LoaderManager.LoaderCallback
     @Override
     public Loader onCreateLoader(int picker_type, Bundle bundle) {
         String selection = MediaStore.Files.FileColumns.MEDIA_TYPE + "="
-                + MediaStore.Files.FileColumns.MEDIA_TYPE + "="
                 + MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 
         Uri queryUri = MediaStore.Files.getContentUri("external");
@@ -61,6 +61,7 @@ public class VideoLoader extends LoaderM implements LoaderManager.LoaderCallback
         Folder allFolder =new Folder(mContext.getResources().getString(R.string.all_video));
         folders.add(allFolder);
         Cursor cursor=(Cursor) o;
+        Log.e("dmc",cursor.getCount()+"数量数量");
         while (cursor.moveToNext()){
             String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
             String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME));
