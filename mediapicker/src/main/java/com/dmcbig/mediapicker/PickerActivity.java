@@ -25,6 +25,7 @@ import com.dmcbig.mediapicker.adapter.SpacingDecoration;
 import com.dmcbig.mediapicker.data.DataCallback;
 import com.dmcbig.mediapicker.data.ImageLoader;
 import com.dmcbig.mediapicker.data.MediaLoader;
+import com.dmcbig.mediapicker.data.VideoLoader;
 import com.dmcbig.mediapicker.entity.Folder;
 import com.dmcbig.mediapicker.entity.Media;
 import com.dmcbig.mediapicker.utils.ScreenUtils;
@@ -54,7 +55,7 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         setContentView(R.layout.main);
         recyclerView=(RecyclerView) findViewById(R.id.recycler_view);
         findViewById(R.id.btn_back).setOnClickListener(this);
-        ((TextView)findViewById(R.id.bar_title)).setText(argsIntent.getIntExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO)==PickerConfig.PICKER_IMAGE_VIDEO?getString(R.string.select_title):getString(R.string.select_image_title));
+        setTitleBar();
         done=(Button) findViewById(R.id.done);
         category_btn=(Button) findViewById(R.id.category_btn);
         preview=(Button) findViewById(R.id.preview);
@@ -65,6 +66,18 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
         createAdapter();
         createFolderAdapter();
         getMediaData();
+    }
+
+
+    public void setTitleBar() {
+        int type=argsIntent.getIntExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);
+        if(type==PickerConfig.PICKER_IMAGE_VIDEO){
+            ((TextView)findViewById(R.id.bar_title)).setText(getString(R.string.select_title));
+        }else if(type==PickerConfig.PICKER_IMAGE){
+            ((TextView)findViewById(R.id.bar_title)).setText(getString(R.string.select_image_title));
+        }else if(type==PickerConfig.PICKER_VIDEO){
+            ((TextView)findViewById(R.id.bar_title)).setText(getString(R.string.select_video_title));
+        }
     }
 
     void createAdapter(){
@@ -109,8 +122,10 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
             int type=argsIntent.getIntExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);
             if(type==PickerConfig.PICKER_IMAGE_VIDEO){
                 getLoaderManager().initLoader(type,null,new MediaLoader(this,this));
-            }else{
+            }else if(type==PickerConfig.PICKER_IMAGE){
                 getLoaderManager().initLoader(type,null,new ImageLoader(this,this));
+            }else if(type==PickerConfig.PICKER_VIDEO){
+                getLoaderManager().initLoader(type,null,new VideoLoader(this,this));
             }
         } else {
             EasyPermissions.requestPermissions(this, getString(R.string.READ_EXTERNAL_STORAGE),119, Manifest.permission.READ_EXTERNAL_STORAGE);

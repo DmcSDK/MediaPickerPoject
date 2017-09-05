@@ -2,6 +2,7 @@ package com.dmcbig.mediapicker.adapter;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,13 +63,18 @@ public class FolderAdapter extends BaseAdapter{
         }
 
         Folder folder=getItem(position);
+        Media media;
+        if(folder.getMedias().size()>0) {
+            media = folder.getMedias().get(0);
+            Glide.with(mContext)
+                    .load(Uri.parse("file://" + media.path))
+                    .into(holder.cover);
+        }else{
+            holder.cover.setImageDrawable( ContextCompat.getDrawable(mContext,R.drawable.default_image));
+        }
 
-        Media media=folder.getMedias().get(0);
-        Uri mediaUri = Uri.parse("file://" + media.path);
-        Glide.with(mContext)
-                .load(mediaUri)
-                .into(holder.cover);
         holder.name.setText(folder.name);
+
         holder.size.setText(folder.getMedias().size()+""+mContext.getString(R.string.count_string));
         holder.indicator.setVisibility(lastSelected==position?View.VISIBLE:View.INVISIBLE);
         return view;

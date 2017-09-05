@@ -1,8 +1,10 @@
 <resources>
     <string name="library_name">媒体选择器</string>
     <string name="all_dir_name">所有图片和视频</string>
+    <string name="all_video">所有视频</string>
     <string name="all_image">所有图片</string>
     <string name="select_title">选择图片和视频</string>
+    <string name="select_video_title">选择视频</string>
     <string name="select_image_title">选择图片</string>
     <string name="video_dir_name">所有视频</string>
     <string name="msg_amount_limit">已达到选择数量上限</string>

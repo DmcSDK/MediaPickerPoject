@@ -29,6 +29,7 @@ public class PickerConfig {
     public static final int RESULT_CODE = 19901026;
     public static final int RESULT_UPDATE_CODE = 1990;
     public static final int PICKER_IMAGE = 100;
+    public static final int PICKER_VIDEO = 102;
     public static final int PICKER_IMAGE_VIDEO = 101;
     public static int GridSpanCount=3;
     public static int GridSpace=4;
