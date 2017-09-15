@@ -1,6 +1,6 @@
 # MediaPickerPoject
 Media Picker like Wechat support Cordova
-仿微信视频图片选择器，支持cordova调用
+仿微信视频图片选择器，代码撸的非常简洁清爽，支持cordova调用
 
 How do I use?
 -------------------
