@@ -1,9 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.dmcbig.mediapicker">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
+
     <application android:allowBackup="true"
         android:supportsRtl="true">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.share"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden"
@@ -14,6 +26,11 @@
             android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:name="com.dmcbig.mediapicker.PreviewActivity" />
+        <activity
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name="com.dmcbig.mediapicker.TakePhotoActivity" />
     </application>
 
 </manifest>
