@@ -37,7 +37,7 @@ public class Media implements Parcelable {
         dest.writeString(this.name);
         dest.writeLong(this.time);
         dest.writeInt(this.mediaType);
-        dest.writeDouble(this.size);
+        dest.writeLong(this.size);
         dest.writeInt(this.id);
         dest.writeString(this.parentDir);
     }

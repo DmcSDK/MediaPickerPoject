@@ -61,7 +61,7 @@ public class TakePhotoActivity extends Activity{
         super.onActivityResult(requestCode, resultCode, data);
         ArrayList<Media> medias=new ArrayList<>();
         if(requestCode==100||requestCode==101&&resultCode==RESULT_OK){
-            Media media=new Media(mTmpFile.getPath(),mTmpFile.getName(),0,1,0,0,"");
+            Media media=new Media(mTmpFile.getPath(),mTmpFile.getName(),0,1,mTmpFile.length(),0,"");
             medias.add(media);
             Intent intent=new Intent();
             intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT,medias);

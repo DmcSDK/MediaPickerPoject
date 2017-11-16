@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
             for(Media media:select){
                 Log.i("media",media.path);
+                Log.e("media","s:"+media.size);
             }
         }
     }
