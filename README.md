@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.dmcBig:mediapicker:1.5'
+    compile 'com.dmcBig:mediapicker:+'
 }
 ```
 
