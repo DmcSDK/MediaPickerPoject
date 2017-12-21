@@ -7,7 +7,7 @@ def gitUrl = 'https://github.com/dmcBig/MediaPickerPoject.git'   // Git仓库的
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-version = "1.9" //发布版本号
+version = "2.1" //发布版本号
 group = "com.dmcBig" //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
 android {
     compileSdkVersion 25
@@ -17,7 +17,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
-        versionName "1.9"
+        versionName "2.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -35,13 +35,13 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:recyclerview-v7:+'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'com.android.support:support-v4:+'
+    compile 'com.android.support:support-v4:25.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
-    compile 'pub.devrel:easypermissions:+'
+    compile 'pub.devrel:easypermissions:1.0.0'
     compile 'com.chensl.rotatephotoview:rotatephotoview:1.0.5'
 }
 
@@ -53,12 +53,12 @@ bintray {
         name = 'MediaPicker'//上传到JCenter的名字,最终引用的名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
-        licenses = ['Apache-2.0']//不能随便写，只能是仓库创建时选择的license type
+        licenses = ['Apache-2.1']//不能随便写，只能是仓库创建时选择的license type
         userOrg = 'yuanwu' //自己创建的organization名称
         publish = true // 是否是公开项目，公开别人可以引用
 
         version {
-            name = '1.9'
+            name = '2.1'
             desc = 'MediaPicker open library.'//描述，自己定义
             released  = new Date()
             vcsTag = 'v1.1'
@@ -81,8 +81,8 @@ install {
                 // Set your license
                 licenses {
                     license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name 'The Apache Software License, Version 2.1'
+                        url 'http://www.apache.org/licenses/LICENSE-2.1.txt'
                     }
                 }
                 developers {
