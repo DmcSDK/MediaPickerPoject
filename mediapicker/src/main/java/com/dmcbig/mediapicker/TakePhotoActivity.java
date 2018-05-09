@@ -42,7 +42,7 @@ public class TakePhotoActivity extends Activity{
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//如果大于等于7.0使用FileProvider
-            NuriForFile=FileProvider.getUriForFile(this,this.getPackageName() + ".share", mTmpFile);
+            NuriForFile=FileProvider.getUriForFile(this,this.getPackageName() + ".dmc", mTmpFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, NuriForFile);
             startActivityForResult(intent, 100);
         } else {

@@ -160,7 +160,8 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
     public void onClick(View v) {
         int id=v.getId();
         if(id==R.id.btn_back){
-            finish();
+            ArrayList<Media> selectMedias=new ArrayList<>();
+            done(selectMedias);
         }else if(id==R.id.category_btn){
             if(mFolderPopupWindow.isShowing()){
                 mFolderPopupWindow.dismiss();
@@ -192,6 +193,13 @@ public class PickerActivity extends AppCompatActivity implements DataCallback ,V
     protected void onDestroy() {
         Glide.get(this).clearMemory();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        ArrayList<Media> selectMedias=new ArrayList<>();
+        done(selectMedias);
+        super.onBackPressed();
     }
 
     @Override
