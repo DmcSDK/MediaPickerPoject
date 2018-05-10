@@ -49,6 +49,7 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
         public ImageView media_image,check_image;
         public View mask_view;
         public TextView textView_size;
+        public RelativeLayout gif_info;
         public RelativeLayout video_info;
         public MyViewHolder(View view){
             super(view);
@@ -56,6 +57,7 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
             check_image = (ImageView) view.findViewById(R.id.check_image);
             mask_view =  view.findViewById(R.id.mask_view);
             video_info = (RelativeLayout) view.findViewById(R.id.video_info);
+            gif_info = (RelativeLayout) view.findViewById(R.id.gif_info);
             textView_size = (TextView) view.findViewById(R.id.textView_size);
             itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getItemWidth())); //让图片是个正方形
         }
@@ -82,10 +84,12 @@ public class MediaGridAdapter  extends RecyclerView.Adapter<MediaGridAdapter.MyV
                 .into(holder.media_image);
 
         if(media.mediaType==3){
+            holder.gif_info.setVisibility(View.INVISIBLE);
             holder.video_info.setVisibility(View.VISIBLE);
             holder.textView_size.setText(fileUtils.getSizeByUnit(media.size));
         }else{
             holder.video_info.setVisibility(View.INVISIBLE);
+            holder.gif_info.setVisibility(".gif".equalsIgnoreCase(media.extension)?View.VISIBLE:View.INVISIBLE);
         }
 
         int isSelect=isSelect(media);

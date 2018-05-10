@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/btn_back"
-        android:layout_width="48dp"
+        android:layout_width="46dp"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:padding="14dp"

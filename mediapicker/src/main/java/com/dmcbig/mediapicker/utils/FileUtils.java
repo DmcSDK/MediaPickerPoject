@@ -1,9 +1,13 @@
 package com.dmcbig.mediapicker.utils;
 
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.webkit.MimeTypeMap;
 
 import java.io.File;
 import java.io.IOException;
@@ -148,4 +152,32 @@ public class FileUtils {
         return new DecimalFormat("#,##0.#").format(size/Math.pow(1024, digitGroups)) + " " + units[digitGroups];
     }
 
+
+    /**
+     * To find out the extension of required object in given uri
+     * Solution by http://stackoverflow.com/a/36514823/1171484
+     */
+    public static String getMimeType(Context context, Uri uri) {
+        String extension;
+        //Check uri format to avoid null
+        if (ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+            //If scheme is a content
+            extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(context.getContentResolver().getType(uri));
+            if (TextUtils.isEmpty(extension)) {
+                extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(uri.getPath())).toString());
+            }
+        } else {
+            //If scheme is a File
+            //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file
+            // name with spaces and special characters.
+            extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(uri.getPath())).toString());
+            if (TextUtils.isEmpty(extension)) {
+                extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(context.getContentResolver().getType(uri));
+            }
+        }
+        return extension;
+    }
+    public static String getMimeTypeByFileName(String fileName) {
+        return fileName.substring(fileName.lastIndexOf("."), fileName.length());
+    }
 }

@@ -10,6 +10,7 @@ import android.os.Parcelable;
 public class Media implements Parcelable {
     public String path;
     public String name;
+    public String extension;
     public long time;
     public int mediaType;
     public  long size;
@@ -18,6 +19,7 @@ public class Media implements Parcelable {
     public Media(String path, String name, long time, int mediaType,long size,int id,String parentDir){
         this.path = path;
         this.name = name;
+        this.extension= name.substring(name.lastIndexOf("."), name.length());
         this.time = time;
         this.mediaType=mediaType;
         this.size=size;
@@ -35,6 +37,7 @@ public class Media implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.path);
         dest.writeString(this.name);
+        dest.writeString(this.extension);
         dest.writeLong(this.time);
         dest.writeInt(this.mediaType);
         dest.writeLong(this.size);
@@ -45,6 +48,7 @@ public class Media implements Parcelable {
     protected Media(Parcel in) {
         this.path = in.readString();
         this.name = in.readString();
+        this.extension = in.readString();
         this.time = in.readLong();
         this.mediaType = in.readInt();
         this.size = in.readLong();
