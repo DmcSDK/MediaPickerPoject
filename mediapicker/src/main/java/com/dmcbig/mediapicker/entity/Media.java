@@ -19,7 +19,11 @@ public class Media implements Parcelable {
     public Media(String path, String name, long time, int mediaType,long size,int id,String parentDir){
         this.path = path;
         this.name = name;
-        this.extension= name.substring(name.lastIndexOf("."), name.length());
+        if(name.length()>0&& name.indexOf(".")!=-1) {
+            this.extension = name.substring(name.lastIndexOf("."), name.length());
+        }else{
+            this.extension="null";
+        }
         this.time = time;
         this.mediaType=mediaType;
         this.size=size;
