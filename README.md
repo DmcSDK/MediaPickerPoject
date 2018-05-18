@@ -19,7 +19,7 @@ dependencies {
 ```
 
 code:
-
+```
     ArrayList<Media> select;
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
@@ -38,6 +38,7 @@ code:
             select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
         }
     }
+```    
 
 # Screenshots
 ![](https://github.com/dmcBig/MediaPickerPoject/blob/master/Screenshots/Screenshots1.png)
