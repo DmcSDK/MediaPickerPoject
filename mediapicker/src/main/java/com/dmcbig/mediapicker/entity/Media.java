@@ -2,6 +2,7 @@ package com.dmcbig.mediapicker.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 /**
  * Created by dmcBig on 2017/7/4.
@@ -19,7 +20,7 @@ public class Media implements Parcelable {
     public Media(String path, String name, long time, int mediaType,long size,int id,String parentDir){
         this.path = path;
         this.name = name;
-        if(name.length()>0&& name.indexOf(".")!=-1) {
+        if(!TextUtils.isEmpty(name)&& name.indexOf(".")!=-1) {
             this.extension = name.substring(name.lastIndexOf("."), name.length());
         }else{
             this.extension="null";
