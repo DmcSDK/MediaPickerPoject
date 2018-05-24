@@ -19,16 +19,16 @@ dependencies {
 ```
 
 code:
-
+```
     ArrayList<Media> select;
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
         intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//default image and video (Optional)
-        long maxSize=188743680L;//long long long
-        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //default 180MB (Optional)
-        intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //default 40 (Optional)
-        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,select); // (Optional)
-        MainActivity.this.startActivityForResult(intent,200);
+        long maxSize=188743680L;//long long long long类型
+        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //default 180MB (Optional) 
+        intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //default 40 (Optional)
+        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,select); //(Optional)默认选中
+        MainActivity.this.startActivityForResult(intent,200);
     }
 
     @Override
@@ -38,6 +38,7 @@ code:
             select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
         }
     }
+```    
 
 # Screenshots
 ![](https://github.com/dmcBig/MediaPickerPoject/blob/master/Screenshots/Screenshots1.png)
