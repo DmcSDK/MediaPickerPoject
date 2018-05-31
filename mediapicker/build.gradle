@@ -10,14 +10,14 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 version = "2.5" //发布版本号
 group = "com.dmcBig" //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    //buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
-        versionName "2.5"
+        versionName "3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -32,11 +32,11 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.1.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-v4:26.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
     compile 'pub.devrel:easypermissions:1.0.0'
     compile 'com.chensl.rotatephotoview:rotatephotoview:1.0.5'

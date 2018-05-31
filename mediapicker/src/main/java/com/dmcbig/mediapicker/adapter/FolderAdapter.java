@@ -21,15 +21,16 @@ import java.util.ArrayList;
  * Created by dmcBig on 2017/7/19.
  */
 
-public class FolderAdapter extends BaseAdapter{
+public class FolderAdapter extends BaseAdapter {
     ArrayList<Folder> folders;
     private LayoutInflater mInflater;
     private Context mContext;
-    int lastSelected=0;
-    public FolderAdapter(ArrayList<Folder> folders,Context context){
+    int lastSelected = 0;
+
+    public FolderAdapter(ArrayList<Folder> folders, Context context) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.folders=folders;
-        this.mContext=context;
+        this.folders = folders;
+        this.mContext = context;
     }
 
     @Override
@@ -47,53 +48,53 @@ public class FolderAdapter extends BaseAdapter{
         return 0;
     }
 
-    public void updateAdapter( ArrayList<Folder> list){
-        this.folders=list;
+    public void updateAdapter(ArrayList<Folder> list) {
+        this.folders = list;
         notifyDataSetChanged();
     }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        if(view == null){
+        if (view == null) {
             view = mInflater.inflate(R.layout.folders_view_item, viewGroup, false);
             holder = new ViewHolder(view);
-        }else{
+        } else {
             holder = (ViewHolder) view.getTag();
         }
 
-        Folder folder=getItem(position);
+        Folder folder = getItem(position);
         Media media;
-        if(folder.getMedias().size()>0) {
+        if (folder.getMedias().size() > 0) {
             media = folder.getMedias().get(0);
             Glide.with(mContext)
                     .load(Uri.parse("file://" + media.path))
                     .into(holder.cover);
-        }else{
-            holder.cover.setImageDrawable( ContextCompat.getDrawable(mContext,R.drawable.default_image));
+        } else {
+            holder.cover.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.default_image));
         }
 
         holder.name.setText(folder.name);
 
-        holder.size.setText(folder.getMedias().size()+""+mContext.getString(R.string.count_string));
-        holder.indicator.setVisibility(lastSelected==position?View.VISIBLE:View.INVISIBLE);
+        holder.size.setText(folder.getMedias().size() + "" + mContext.getString(R.string.count_string));
+        holder.indicator.setVisibility(lastSelected == position ? View.VISIBLE : View.INVISIBLE);
         return view;
     }
 
 
     public void setSelectIndex(int i) {
-        if(lastSelected == i) return;
+        if (lastSelected == i) return;
         lastSelected = i;
         notifyDataSetChanged();
     }
 
-    public  ArrayList<Media> getSelectMedias(){
+    public ArrayList<Media> getSelectMedias() {
         return folders.get(lastSelected).getMedias();
     }
 
     class ViewHolder {
-        ImageView cover,indicator;
-        TextView name,path,size;
+        ImageView cover, indicator;
+        TextView name, path, size;
 
         ViewHolder(View view) {
             cover = (ImageView) view.findViewById(R.id.cover);

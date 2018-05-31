@@ -1,6 +1,5 @@
 package com.dmcbig.mediapicker.utils;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -25,9 +24,9 @@ public class FileUtils {
     private static final String JPEG_FILE_PREFIX = "IMG_";
     private static final String JPEG_FILE_SUFFIX = ".jpg";
 
-    public static File createTmpFile(Context context) throws IOException{
+    public static File createTmpFile(Context context) throws IOException {
         File dir = null;
-        if(TextUtils.equals(Environment.getExternalStorageState(), Environment.MEDIA_MOUNTED)) {
+        if (TextUtils.equals(Environment.getExternalStorageState(), Environment.MEDIA_MOUNTED)) {
             dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
             if (!dir.exists()) {
                 dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM + "/Camera");
@@ -35,7 +34,7 @@ public class FileUtils {
                     dir = getCacheDirectory(context, true);
                 }
             }
-        }else{
+        } else {
             dir = getCacheDirectory(context, true);
         }
         return File.createTempFile(JPEG_FILE_PREFIX, JPEG_FILE_SUFFIX, dir);
@@ -97,7 +96,7 @@ public class FileUtils {
      * created on SD card <i>("/Android/data/[app_package_name]/cache/uil-images")</i> if card is mounted and app has
      * appropriate permission. Else - Android defines cache directory on device's file system.
      *
-     * @param context Application context
+     * @param context  Application context
      * @param cacheDir Cache directory path (e.g.: "AppCacheDir", "AppDir/cache/images")
      * @return Cache {@link File directory}
      */
@@ -126,7 +125,9 @@ public class FileUtils {
         }
         return appCacheDir;
     }
+
     private static final long MB = 1024 * 1024;
+
     public String getSizeByUnit(double size) {
 
         if (size == 0) {
@@ -146,10 +147,10 @@ public class FileUtils {
     }
 
     public static String fileSize(long size) {
-        if(size <= 0) return "0";
-        final String[] units = new String[] { "B", "kB", "MB", "GB", "TB" };
-        int digitGroups = (int) (Math.log10(size)/Math.log10(1024));
-        return new DecimalFormat("#,##0.#").format(size/Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+        if (size <= 0) return "0";
+        final String[] units = new String[]{"B", "kB", "MB", "GB", "TB"};
+        int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
+        return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
     }
 
 
@@ -177,6 +178,7 @@ public class FileUtils {
         }
         return extension;
     }
+
     public static String getMimeTypeByFileName(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."), fileName.length());
     }

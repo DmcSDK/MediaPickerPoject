@@ -13,20 +13,20 @@ public class Folder implements Parcelable {
 
     public String name;
 
-    public  int count;
+    public int count;
 
-    ArrayList<Media> medias=new ArrayList<>();
+    ArrayList<Media> medias = new ArrayList<>();
 
-    public void addMedias(Media media){
+    public void addMedias(Media media) {
         medias.add(media);
     }
 
     public Folder(String name) {
-        this.name=name;
+        this.name = name;
     }
 
-    public ArrayList<Media> getMedias(){
-        return  this.medias;
+    public ArrayList<Media> getMedias() {
+        return this.medias;
     }
 
 
