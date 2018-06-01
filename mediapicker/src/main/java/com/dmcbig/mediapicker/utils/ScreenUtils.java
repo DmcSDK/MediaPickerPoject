@@ -1,4 +1,5 @@
 package com.dmcbig.mediapicker.utils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
