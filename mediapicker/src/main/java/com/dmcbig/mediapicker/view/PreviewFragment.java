@@ -76,6 +76,7 @@ public class PreviewFragment extends Fragment {
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setDataAndType(getUri(media.path), "video/*");
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     if (isIntentAvailable(getContext(), intent)) {
                         startActivity(intent);
                     } else {
@@ -87,7 +88,7 @@ public class PreviewFragment extends Fragment {
     }
 
     Uri getUri(String path){
-        if (Build.VERSION.SDK_INT > 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
           return   FileProvider.getUriForFile(getActivity(), getActivity().getPackageName()+ ".dmc", new File(path));
         }else {
           return Uri.fromFile(new File(path));
