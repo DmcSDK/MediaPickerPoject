@@ -15,6 +15,7 @@
     <string name="preview">预览</string>
     <string name="select">选择</string>
     <string name="video">视频</string>
+    <string name="cant_play_video">没有可以播放的程序</string>
     <string name="READ_EXTERNAL_STORAGE">需要打开读取存储权限</string>
 </resources>
 
