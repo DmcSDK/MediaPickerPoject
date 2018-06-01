@@ -3,6 +3,7 @@ package com.dmcbig.mediapicker.view;
 /**
  * Created by dmcBig on 2017/7/11.
  */
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;

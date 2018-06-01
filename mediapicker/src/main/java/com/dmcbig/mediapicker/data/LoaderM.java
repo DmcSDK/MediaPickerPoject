@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class LoaderM {
 
     public String getParent(String path) {
-        String sp[]=path.split("/");
-        return sp[sp.length-2];
+        String sp[] = path.split("/");
+        return sp[sp.length - 2];
     }
 
-    public int hasDir(ArrayList<Folder> folders, String dirName){
-        for(int i = 0; i< folders.size(); i++){
+    public int hasDir(ArrayList<Folder> folders, String dirName) {
+        for (int i = 0; i < folders.size(); i++) {
             Folder folder = folders.get(i);
-            if( folder.name.equals(dirName)) {
+            if (folder.name.equals(dirName)) {
                 return i;
             }
         }
