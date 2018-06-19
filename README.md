@@ -1,12 +1,16 @@
 # MediaPickerPoject
 Media Picker like Wechat support Cordova
-仿微信视频图片选择器，代码撸的非常简洁清爽好改，支持cordova调用
+仿微信视频图片选择器，代码撸的非常简洁清爽好改，支持cordova调用。
+
 同类的库很多很多，但都过于强大而笨重，代码不容易在特别短的时间里面改动，所以我创建了这个简单而轻量的库。
+
 非常欢迎有空的小伙伴一同 pull requests 改进优化项目（特别是UI我觉得还不够美）。
 
 How do I use?
 -------------------
-[Cordova](https://github.com/dmcBig/cordova-plugin-mediaPicker) : https://github.com/dmcBig/cordova-plugin-mediaPicker
+[Cordova版](https://github.com/dmcBig/cordova-plugin-mediaPicker) : https://github.com/dmcBig/cordova-plugin-mediaPicker 
+
+[IOS版](https://github.com/dmcBig/IOSMediaPicker) : https://github.com/dmcBig/IOSMediaPicker
 
 use Gradle:
 
