@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dmcbig.mediapicker.PreviewActivity;
 import com.dmcbig.mediapicker.R;
 import com.dmcbig.mediapicker.entity.Media;
 
@@ -31,7 +33,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class PreviewFragment extends Fragment {
     private PhotoView mPhotoView;
     ImageView play_view;
-    private PhotoViewAttacher mAttacher;
+ //   private PhotoViewAttacher mAttacher;
 
     public static PreviewFragment newInstance(Media media, String label) {
         PreviewFragment f = new PreviewFragment();
@@ -58,10 +60,14 @@ public class PreviewFragment extends Fragment {
         Media media = getArguments().getParcelable("media");
         play_view = (ImageView) view.findViewById(R.id.play_view);
         mPhotoView = (PhotoView) view.findViewById(R.id.photoview);
-        mAttacher = new PhotoViewAttacher(mPhotoView);
-        mAttacher.setRotatable(true);
-        mAttacher.setToRightAngle(true);
-
+        mPhotoView.setMaximumScale(5);
+        mPhotoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+            @Override
+            public void onPhotoTap(View view, float x, float y) {
+                PreviewActivity previewActivity=  (PreviewActivity)getActivity();
+                previewActivity.setBarStatus();
+            }
+        });
         setPlayView(media);
         Glide.with(getActivity())
                 .load(media.path)
@@ -109,7 +115,6 @@ public class PreviewFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        mAttacher.cleanup();
         super.onDestroyView();
     }
 }

@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,21 +23,22 @@ import com.dmcbig.mediapicker.entity.Media;
 import com.dmcbig.mediapicker.view.PreviewFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * Created by dmcBig on 2017/8/9.
  */
 
-public class PreviewActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
+public class PreviewActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener{
 
     Button done;
     LinearLayout check_layout;
     ImageView check_image;
     ViewPager viewpager;
     TextView bar_title;
+    View top,bottom;
     ArrayList<Media> preRawList, selects;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,8 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         bar_title = (TextView) findViewById(R.id.bar_title);
         done = (Button) findViewById(R.id.done);
         done.setOnClickListener(this);
+        top= findViewById(R.id.top);
+        bottom= findViewById(R.id.bottom);
         viewpager = (ViewPager) findViewById(R.id.viewpager);
         preRawList = getIntent().getParcelableArrayListExtra(PickerConfig.PRE_RAW_LIST);
         selects = new ArrayList<>();
@@ -63,11 +69,13 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         AdapterFragment adapterFragment = new AdapterFragment(getSupportFragmentManager(), fragmentArrayList);
         viewpager.setAdapter(adapterFragment);
         viewpager.addOnPageChangeListener(this);
+
     }
 
     void setDoneView(int num1) {
         done.setText(getString(R.string.done) + "(" + num1 + "/" + getIntent().getIntExtra(PickerConfig.MAX_SELECT_COUNT, PickerConfig.DEFAULT_SELECTED_MAX_COUNT) + ")");
     }
+
 
     @Override
     public void onClick(View v) {
@@ -116,6 +124,19 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         finish();
     }
 
+    public void setBarStatus(){
+        Log.e("setBarStatus","setBarStatus");
+        if(top.getVisibility()==View.VISIBLE){
+            top.setVisibility(View.GONE);
+            bottom.setVisibility(View.GONE);
+        }else{
+            top.setVisibility(View.VISIBLE);
+            bottom.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+
     @Override
     public void onBackPressed() {
         done(selects, PickerConfig.RESULT_UPDATE_CODE);
@@ -139,6 +160,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         public int getCount() {
             return mFragments.size();
         }
+
     }
 
     @Override

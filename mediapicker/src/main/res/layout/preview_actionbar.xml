@@ -32,30 +32,7 @@
         android:text="1/1"
         android:textColor="#ffffff"
         android:textSize="16sp"/>
-    <LinearLayout
-        android:id="@+id/check_layout"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/check_image"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="7dp"
-            android:src="@drawable/btn_selected" />
-        <TextView
-            android:id="@+id/select_text"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="@string/select"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/default_text_color"
-            android:textSize="15sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
     <Button
         android:id="@+id/done"
         android:background="@drawable/action_btn"

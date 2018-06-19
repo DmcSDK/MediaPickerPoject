@@ -57,16 +57,14 @@ public class TakePhotoActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ArrayList<Media> medias = new ArrayList<>();
-        if (requestCode == 100 || requestCode == 101 && resultCode == RESULT_OK) {
-            if (mTmpFile.length() > 0) {
-                Media media = new Media(mTmpFile.getPath(), mTmpFile.getName(), 0, 1, mTmpFile.length(), 0, "");
-                medias.add(media);
-                Intent intent = new Intent();
-                intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT, medias);
-                setResult(PickerConfig.RESULT_CODE, intent);
-            }
-            finish();
+        if (requestCode == 100 || requestCode == 101 && resultCode == RESULT_OK&&mTmpFile.length() > 0) {
+            Media media = new Media(mTmpFile.getPath(), mTmpFile.getName(), 0, 1, mTmpFile.length(), 0, "");
+            medias.add(media);
         }
+        Intent intent = new Intent();
+        intent.putParcelableArrayListExtra(PickerConfig.EXTRA_RESULT, medias);
+        setResult(PickerConfig.RESULT_CODE, intent);
+        finish();
     }
 
     private File createImageFile() throws IOException {
