@@ -8,9 +8,9 @@
 
 How do I use?
 -------------------
-[Cordova版](https://github.com/dmcBig/cordova-plugin-mediaPicker) : https://github.com/dmcBig/cordova-plugin-mediaPicker 
+[Cordova版](https://github.com/DmcSDK/cordova-plugin-mediaPicker) : https://github.com/DmcSDK/cordova-plugin-mediaPicker 
 
-[IOS版](https://github.com/dmcBig/IOSMediaPicker) : https://github.com/dmcBig/IOSMediaPicker
+[IOS版](https://github.com/DmcSDK/IOSMediaPicker) : https://github.com/DmcSDK/IOSMediaPicker
 
 use Gradle:
 
