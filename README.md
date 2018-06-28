@@ -1,4 +1,4 @@
-# MediaPickerPoject
+# MediaPickerProject
 
 仿微信视频图片选择器，代码撸的非常简洁清爽好改，支持cordova调用。
 
