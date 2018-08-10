@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
@@ -30,7 +31,7 @@ import java.util.List;
  * Created by dmcBig on 2017/8/9.
  */
 
-public class PreviewActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener{
+public class PreviewActivity extends FragmentActivity implements View.OnClickListener, ViewPager.OnPageChangeListener{
 
     Button done;
     LinearLayout check_layout;
@@ -69,7 +70,6 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         AdapterFragment adapterFragment = new AdapterFragment(getSupportFragmentManager(), fragmentArrayList);
         viewpager.setAdapter(adapterFragment);
         viewpager.addOnPageChangeListener(this);
-
     }
 
     void setDoneView(int num1) {
@@ -142,6 +142,8 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         done(selects, PickerConfig.RESULT_UPDATE_CODE);
         super.onBackPressed();
     }
+
+
 
     public class AdapterFragment extends FragmentStatePagerAdapter {
         private List<Fragment> mFragments;

@@ -1,6 +1,7 @@
 package com.dmcbig.mediapicker;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -40,7 +41,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by dmcBig on 2017/6/9.
  */
 
-public class PickerActivity extends AppCompatActivity implements DataCallback, View.OnClickListener {
+public class PickerActivity extends Activity implements DataCallback, View.OnClickListener {
 
     Intent argsIntent;
     RecyclerView recyclerView;
