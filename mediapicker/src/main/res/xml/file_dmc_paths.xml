@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <paths>
-        <external-path path="." name="external_files" />
+        <root-path name="dmcpic" path="" />
     </paths>
 </resources>
