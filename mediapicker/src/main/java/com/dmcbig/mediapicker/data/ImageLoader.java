@@ -67,6 +67,7 @@ public class ImageLoader extends LoaderM implements LoaderManager.LoaderCallback
             int id = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
 
             if (size < 1) continue;
+            if(path == null || path.equals("")) continue;
             String dirName = getParent(path);
             Media media = new Media(path, name, dateTime, mediaType, size, id, dirName);
             allFolder.addMedias(media);
