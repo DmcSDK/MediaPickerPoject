@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
         intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//default image and video (Optional)
-        long maxSize=188743680L;//long long long
-        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //default 180MB (Optional)
+        PickerConfig.setMaxSize(10485760L);//设置最大选着文件
+        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,PickerConfig.getMaxSize()); //default 180MB (Optional)
         intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //default 40 (Optional)
         intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,select); // (Optional)
         MainActivity.this.startActivityForResult(intent,200);

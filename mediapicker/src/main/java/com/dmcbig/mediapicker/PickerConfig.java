@@ -19,7 +19,7 @@ public class PickerConfig {
      */
     public static final String MAX_SELECT_SIZE = "max_select_size";
 
-    public static final long DEFAULT_SELECTED_MAX_SIZE = 188743680;
+    public static  long DEFAULT_SELECTED_MAX_SIZE = 188743680;
 
     /**
      * 图片选择模式，默认选视频和图片
@@ -45,4 +45,16 @@ public class PickerConfig {
     public static final int PICKER_IMAGE_VIDEO = 101;
     public static int GridSpanCount = 3;
     public static int GridSpace = 4;
+
+    public static void setMaxSize(long MaxSize){
+//         "B";
+//         1024 + "KB";
+//         1048576 + "MB";
+//         1073741824 + "GB";
+
+        DEFAULT_SELECTED_MAX_SIZE=MaxSize;
+    }
+    public static long getMaxSize(){
+        return DEFAULT_SELECTED_MAX_SIZE;
+    }
 }
