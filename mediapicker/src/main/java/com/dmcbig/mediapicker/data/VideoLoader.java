@@ -22,6 +22,7 @@ import java.util.ArrayList;
  */
 
 public class VideoLoader extends LoaderM implements LoaderManager.LoaderCallbacks {
+    private static final String DURATION = "duration";
     String[] MEDIA_PROJECTION = {
             MediaStore.Files.FileColumns.DATA,
             MediaStore.Files.FileColumns.DISPLAY_NAME,
@@ -29,7 +30,8 @@ public class VideoLoader extends LoaderM implements LoaderManager.LoaderCallback
             MediaStore.Files.FileColumns.MEDIA_TYPE,
             MediaStore.Files.FileColumns.SIZE,
             MediaStore.Files.FileColumns._ID,
-            MediaStore.Files.FileColumns.PARENT};
+            MediaStore.Files.FileColumns.PARENT,
+            DURATION};
 
     Context mContext;
     DataCallback mLoader;
@@ -69,12 +71,13 @@ public class VideoLoader extends LoaderM implements LoaderManager.LoaderCallback
             long dateTime = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_ADDED));
             int mediaType = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE));
             long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE));
+            long duration = cursor.getLong(cursor.getColumnIndexOrThrow(DURATION));
             int id = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID));
 
             if (size < 1) continue;
             if (path == null || path.equals("")) continue;
             String dirName = getParent(path);
-            Media media = new Media(path, name, dateTime, mediaType, size, id, dirName);
+            Media media = new Media(path, name, dateTime, mediaType, size,duration, id, dirName);
             allFolder.addMedias(media);
 
             int index = hasDir(folders, dirName);

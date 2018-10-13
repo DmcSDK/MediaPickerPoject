@@ -13,6 +13,8 @@ import android.webkit.MimeTypeMap;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Formatter;
 import java.util.Locale;
 
 import static android.os.Environment.MEDIA_MOUNTED;
@@ -59,7 +61,7 @@ public class FileUtils {
         return getCacheDirectory(context, true);
     }
 
-    public static String getRealPathFromURI(Context context,Uri contentURI) {
+    public static String getRealPathFromURI(Context context, Uri contentURI) {
         String result;
         Cursor cursor = context.getContentResolver().query(contentURI, null, null, null, null);
         if (cursor == null) { // Source is Dropbox or other similar local file path
@@ -169,6 +171,48 @@ public class FileUtils {
         return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
     }
 
+
+    private static SimpleDateFormat msFormat = new SimpleDateFormat("mm:ss");
+    /**
+     * MS turn every minute
+     *
+     * @param duration Millisecond
+     * @return Every minute
+     */
+    public static String c(long duration) {
+        String time = "";
+        if (duration > 1000) {
+            time = timeParseMinute(duration);
+        } else {
+            long minute = duration / 60000;
+            long seconds = duration % 60000;
+            long second = Math.round((float) seconds / 1000);
+            if (minute < 10) {
+                time += "0";
+            }
+            time += minute + ":";
+            if (second < 10) {
+                time += "0";
+            }
+            time += second;
+        }
+        return time;
+    }
+
+    /**
+     * MS turn every minute
+     *
+     * @param duration Millisecond
+     * @return Every minute
+     */
+    public static String timeParseMinute(long duration) {
+        try {
+            return msFormat.format(duration);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "0:00";
+        }
+    }
 
     /**
      * To find out the extension of required object in given uri

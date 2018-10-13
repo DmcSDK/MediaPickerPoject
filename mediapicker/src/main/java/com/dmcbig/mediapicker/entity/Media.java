@@ -15,6 +15,7 @@ public class Media implements Parcelable {
     public long time;
     public int mediaType;
     public long size;
+    public long duration;
     public int id;
     public String parentDir;
 
@@ -32,7 +33,21 @@ public class Media implements Parcelable {
         this.id = id;
         this.parentDir = parentDir;
     }
-
+    public Media(String path, String name, long time, int mediaType, long size,long duration, int id, String parentDir) {
+        this.path = path;
+        this.name = name;
+        if (!TextUtils.isEmpty(name) && name.indexOf(".") != -1) {
+            this.extension = name.substring(name.lastIndexOf("."), name.length());
+        } else {
+            this.extension = "null";
+        }
+        this.time = time;
+        this.mediaType = mediaType;
+        this.size = size;
+        this.duration = duration;
+        this.id = id;
+        this.parentDir = parentDir;
+    }
 
     @Override
     public int describeContents() {
@@ -47,6 +62,7 @@ public class Media implements Parcelable {
         dest.writeLong(this.time);
         dest.writeInt(this.mediaType);
         dest.writeLong(this.size);
+        dest.writeLong(this.duration);
         dest.writeInt(this.id);
         dest.writeString(this.parentDir);
     }
@@ -58,6 +74,7 @@ public class Media implements Parcelable {
         this.time = in.readLong();
         this.mediaType = in.readInt();
         this.size = in.readLong();
+        this.duration = in.readLong();
         this.id = in.readInt();
         this.parentDir = in.readString();
     }
