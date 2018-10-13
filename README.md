@@ -21,7 +21,8 @@ repositories {
 
 dependencies {
     compile 'com.dmcBig:mediapicker:+'
-    implementation 'com.github.Achenglove:MediaPickerPoject:v1.0.1'
+    
+    或者implementation 'com.github.Achenglove:MediaPickerPoject:v1.0.1'
 }
 ```
 
