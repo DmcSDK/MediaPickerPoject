@@ -31,15 +31,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.0.2'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'com.android.support:support-v4:25.3.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
-    compile 'pub.devrel:easypermissions:1.0.0'
-    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'com.android.support:support-v4:26.1.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+    implementation 'pub.devrel:easypermissions:1.0.0'
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+
 }
 
 bintray {
