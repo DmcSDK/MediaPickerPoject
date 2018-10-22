@@ -1,0 +1,20 @@
+<resources>
+    <string name="library_name">Seletor de Conteúdo</string>
+    <string name="all_dir_name">Todas Imagens e Vídeos</string>
+    <string name="all_video">Todos os Vídeos</string>
+    <string name="all_image">Todas as Imagens</string>
+    <string name="select_title">Selecionar Imagens e Vídeos</string>
+    <string name="select_video_title">Selecionar Vídeo</string>
+    <string name="select_image_title">Selecionar Imagem</string>
+    <string name="video_dir_name">Todos os Vídeos</string>
+    <string name="msg_amount_limit">Atingiu o limite máximo de escolhas</string>
+    <string name="msg_size_limit">O tamanho máximo do arquivo é somente</string>
+    <string name="select_null">por favor selecionar arquivo</string>
+    <string name="done">pronto</string>
+    <string name="count_string"></string>
+    <string name="preview">prévia</string>
+    <string name="select">selecionar</string>
+    <string name="video">vídeo</string>
+    <string name="cant_play_video">Nenhum programa para tocar!</string>
+    <string name="READ_EXTERNAL_STORAGE">Precisa abrir a permissão de leitura de armazenamento</string>
+</resources>
