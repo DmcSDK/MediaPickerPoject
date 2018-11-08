@@ -6,7 +6,7 @@
 
 非常欢迎有空的小伙伴一同 pull requests 改进优化项目（特别是UI，我想再增加几种UI风格样式，比如模仿知乎，模仿Twitter,或纯material design 风格）。
 
-How do I use?
+怎么使用?
 -------------------
 [Cordova版](https://github.com/DmcSDK/cordova-plugin-mediaPicker) : https://github.com/DmcSDK/cordova-plugin-mediaPicker 
 
