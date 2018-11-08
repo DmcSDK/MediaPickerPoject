@@ -10,10 +10,10 @@
     <string name="msg_amount_limit">Has reached the maximum number of choices</string>
     <string name="msg_size_limit">The maximum file size is only</string>
     <string name="select_null">please select file</string>
-    <string name="done">done</string>
+    <string name="done">Done</string>
     <string name="count_string"></string>
-    <string name="preview">preview</string>
-    <string name="select">select</string>
+    <string name="preview">Preview</string>
+    <string name="select">Select</string>
     <string name="video">video</string>
     <string name="cant_play_video">No program to play!</string>
     <string name="READ_EXTERNAL_STORAGE">Need to open read storage permissions</string>

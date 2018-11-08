@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
-def siteUrl = 'https://github.com/dmcBig/MediaPickerPoject'   // 项目的主页
-def gitUrl = 'https://github.com/dmcBig/MediaPickerPoject.git'   // Git仓库的url
+def siteUrl = 'https://github.com/DmcSDK/MediaPickerPoject'   // 项目的主页
+def gitUrl = 'https://github.com/DmcSDK/MediaPickerPoject.git'   // Git仓库的url
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-version = "3.1" //发布版本号
+version = "3.3" //发布版本号
 group = "com.dmcBig" //最终引用形式，如compile 'com.**;
 android {
     compileSdkVersion 25
@@ -17,7 +17,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
-        versionName "3.1"
+        versionName "3.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -55,7 +55,7 @@ bintray {
         publish = true // 是否是公开项目，公开别人可以引用
 
         version {
-            name = '3.1'
+            name = '3.3'
             desc = 'MediaPicker open library.'//描述，自己定义
             released  = new Date()
             vcsTag = 'v1.1'
