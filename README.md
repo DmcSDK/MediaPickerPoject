@@ -28,12 +28,12 @@ code:
 ```
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
-        intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//default image and video (Optional)
+        intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//设置选择类型，默认是图片和视频可一起选择(可选)
         long maxSize=188743680L;//long long long long类型
-        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //default 180MB (Optional) 
-        intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //default 40 (Optional)
+        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //最大选择大小，默认180M（可选）
+        intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //最大选择数量，默认40（可选）
         ArrayList<Media> defaultSelect;//可以设置默认选中的照片
-        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,defaultSelect); //(Optional)可以设置默认选中的照片
+        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,defaultSelect); //可以设置默认选中的照片(可选)
         MainActivity.this.startActivityForResult(intent,200);
     }
 
