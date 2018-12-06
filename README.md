@@ -26,22 +26,23 @@ dependencies {
 
 code:
 ```
+    ArrayList<Media> select;
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
-        intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//设置选择类型，默认是图片和视频可一起选择(可选)
+        intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//设置选择类型，默认是图片和视频可一起选择(非必填参数)
         long maxSize=188743680L;//long long long long类型
-        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //最大选择大小，默认180M（可选）
-        intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //最大选择数量，默认40（可选）
-        ArrayList<Media> defaultSelect;//可以设置默认选中的照片
-        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,defaultSelect); //可以设置默认选中的照片(可选)
+        intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //最大选择大小，默认180M（非必填参数）
+        intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //最大选择数量，默认40（非必填参数）
+        ArrayList<Media> defaultSelect = select;//可以设置默认选中的照片，比如把select刚刚选择的list设置成默认的。
+        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,defaultSelect); //可以设置默认选中的照片(非必填参数)
         MainActivity.this.startActivityForResult(intent,200);
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==200&&resultCode==PickerConfig.RESULT_CODE){
-            select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);
+            select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);//选择完后返回的list
         }
     }
 ```    
