@@ -37,7 +37,7 @@ code:
         intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST,defaultSelect); //可以设置默认选中的照片(非必填参数)
         MainActivity.this.startActivityForResult(intent,200);
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -45,6 +45,10 @@ code:
             select=data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT);//选择完后返回的list
         }
     }
+    
+    //拍照
+    //Intent intent =new Intent(MainActivity.this, TakePhotoActivity.class); //Take a photo with a camera
+    //MainActivity.this.startActivityForResult(intent,200);
 ```    
 
 # Screenshots
