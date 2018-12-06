@@ -26,7 +26,7 @@ dependencies {
 
 code:
 ```
-    ArrayList<Media> select;
+    ArrayList<Media> select = new ArrayList<>();//装被选中的文件
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
         intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//设置选择类型，默认是图片和视频可一起选择(非必填参数)
