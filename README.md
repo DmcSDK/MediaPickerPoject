@@ -47,8 +47,8 @@ code:
     }
     
     //拍照
-    //Intent intent =new Intent(MainActivity.this, TakePhotoActivity.class); //Take a photo with a camera
-    //MainActivity.this.startActivityForResult(intent,200);
+    // Intent intent =new Intent(MainActivity.this, TakePhotoActivity.class); //Take a photo with a camera
+    // MainActivity.this.startActivityForResult(intent,200);
 ```    
 
 # Screenshots
