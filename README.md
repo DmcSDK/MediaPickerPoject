@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/DmcSDK/MediaPickerPoject.svg)](https://jitpack.io/#DmcSDK/MediaPickerPoject)
 # MediaPickerProject
 
 仿微信视频图片选择器，代码撸的非常简洁好改，支持cordova调用，联系QQ：3451927565。
@@ -17,13 +18,17 @@
 use Gradle:
 
 ```gradle
-repositories {
-    mavenCentral() // jcenter() works as well because it pulls from Maven Central
+dependencyResolutionManagement {
+		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositories {
+			mavenCentral()
+			maven { url 'https://jitpack.io' }
+		}
 }
 
 dependencies {
-    compile 'com.dmcBig:mediapicker:+'
-}
+	        implementation 'com.github.DmcSDK:MediaPickerPoject:Tag'
+	}
 ```
 
 code:
