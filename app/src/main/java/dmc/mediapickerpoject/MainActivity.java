@@ -3,7 +3,7 @@ package dmc.mediapickerpoject;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Media> select;
     void go(){
         Intent intent =new Intent(MainActivity.this, PickerActivity.class);
-        intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE_VIDEO);//default image and video (Optional)
+        intent.putExtra(PickerConfig.SELECT_MODE,PickerConfig.PICKER_IMAGE);//default image and video (Optional)
         long maxSize=188743680L;//long long long
         intent.putExtra(PickerConfig.MAX_SELECT_SIZE,maxSize); //default 180MB (Optional)
         intent.putExtra(PickerConfig.MAX_SELECT_COUNT,15);  //default 40 (Optional)

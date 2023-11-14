@@ -1,15 +1,17 @@
 package com.dmcbig.mediapicker.data;
 
-import android.app.LoaderManager;
+
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
 import com.dmcbig.mediapicker.R;
 import com.dmcbig.mediapicker.entity.Folder;

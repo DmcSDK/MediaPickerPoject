@@ -62,6 +62,7 @@ public class Media implements Parcelable {
         this.parentDir = in.readString();
     }
 
+
     public static final Creator<Media> CREATOR = new Creator<Media>() {
         @Override
         public Media createFromParcel(Parcel source) {

@@ -4,15 +4,25 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.ListPopupWindow;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.widget.ListPopupWindow;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -41,7 +51,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by dmcBig on 2017/6/9.
  */
 
-public class PickerActivity extends Activity implements DataCallback, View.OnClickListener {
+public class PickerActivity extends FragmentActivity implements DataCallback, View.OnClickListener {
 
     Intent argsIntent;
     RecyclerView recyclerView;
@@ -54,19 +64,23 @@ public class PickerActivity extends Activity implements DataCallback, View.OnCli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         argsIntent = getIntent();
-        setContentView(R.layout.main);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        findViewById(R.id.btn_back).setOnClickListener(this);
-        setTitleBar();
-        done = (Button) findViewById(R.id.done);
-        category_btn = (Button) findViewById(R.id.category_btn);
-        preview = (Button) findViewById(R.id.preview);
-        done.setOnClickListener(this);
-        category_btn.setOnClickListener(this);
-        preview.setOnClickListener(this);
-        //get view end
-        createAdapter();
-        createFolderAdapter();
+        if (Build.VERSION.SDK_INT >= 33){
+            setContentView(R.layout.loading);
+        }else {
+            setContentView(R.layout.main);
+            recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+            findViewById(R.id.btn_back).setOnClickListener(this);
+            setTitleBar();
+            done = (Button) findViewById(R.id.done);
+            category_btn = (Button) findViewById(R.id.category_btn);
+            preview = (Button) findViewById(R.id.preview);
+            done.setOnClickListener(this);
+            category_btn.setOnClickListener(this);
+            preview.setOnClickListener(this);
+            //get view end
+            createAdapter();
+            createFolderAdapter();
+        }
         getMediaData();
     }
 
@@ -118,19 +132,55 @@ public class PickerActivity extends Activity implements DataCallback, View.OnCli
         });
     }
 
+
+
     @AfterPermissionGranted(119)
     void getMediaData() {
-        if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            int type = argsIntent.getIntExtra(PickerConfig.SELECT_MODE, PickerConfig.PICKER_IMAGE_VIDEO);
-            if (type == PickerConfig.PICKER_IMAGE_VIDEO) {
-                getLoaderManager().initLoader(type, null, new MediaLoader(this, this));
-            } else if (type == PickerConfig.PICKER_IMAGE) {
-                getLoaderManager().initLoader(type, null, new ImageLoader(this, this));
-            } else if (type == PickerConfig.PICKER_VIDEO) {
-                getLoaderManager().initLoader(type, null, new VideoLoader(this, this));
+
+        if (Build.VERSION.SDK_INT >= 33){
+          //  if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_MEDIA_IMAGES)) {
+//                Toast.makeText(this,"get Media 33",Toast.LENGTH_LONG).show();
+//                int type = argsIntent.getIntExtra(PickerConfig.SELECT_MODE, PickerConfig.PICKER_IMAGE_VIDEO);
+//                if (type == PickerConfig.PICKER_IMAGE_VIDEO) {
+//                    LoaderManager.getInstance(this).initLoader(type, null, new MediaLoader(this, this));
+//                } else if (type == PickerConfig.PICKER_IMAGE) {
+//                    LoaderManager.getInstance(this).initLoader(type, null, new ImageLoader(this, this));
+//                } else if (type == PickerConfig.PICKER_VIDEO) {
+//                    LoaderManager.getInstance(this).initLoader(type, null, new VideoLoader(this, this));
+//                }
+
+                Intent intent = new  Intent(MediaStore.ACTION_PICK_IMAGES);
+                int type = argsIntent.getIntExtra(PickerConfig.SELECT_MODE, PickerConfig.PICKER_IMAGE_VIDEO);
+                if (type == PickerConfig.PICKER_IMAGE) {
+                    intent.setType("image/*");
+                } else if (type == PickerConfig.PICKER_VIDEO) {
+                    intent.setType("video/*");
+                }
+                int maxSelect = argsIntent.getIntExtra(PickerConfig.MAX_SELECT_COUNT, PickerConfig.DEFAULT_SELECTED_MAX_COUNT);
+                long maxSize = argsIntent.getLongExtra(PickerConfig.MAX_SELECT_SIZE, PickerConfig.DEFAULT_SELECTED_MAX_SIZE);
+                intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,  maxSize);
+                if(maxSelect>1){
+                    intent.putExtra(MediaStore.EXTRA_PICK_IMAGES_MAX,  maxSelect);
+                }
+                this.startActivityForResult(intent,300);
+
+
+//            }else{
+//                EasyPermissions.requestPermissions(this, getString(R.string.READ_EXTERNAL_STORAGE), 119, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.READ_MEDIA_AUDIO);
+//            }
+        }else {
+            if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                int type = argsIntent.getIntExtra(PickerConfig.SELECT_MODE, PickerConfig.PICKER_IMAGE_VIDEO);
+                if (type == PickerConfig.PICKER_IMAGE_VIDEO) {
+                    LoaderManager.getInstance(this).initLoader(type, null, new MediaLoader(this, this));
+                } else if (type == PickerConfig.PICKER_IMAGE) {
+                    LoaderManager.getInstance(this).initLoader(type, null, new ImageLoader(this, this));
+                } else if (type == PickerConfig.PICKER_VIDEO) {
+                    LoaderManager.getInstance(this).initLoader(type, null, new VideoLoader(this, this));
+                }
+            } else {
+                EasyPermissions.requestPermissions(this, getString(R.string.READ_EXTERNAL_STORAGE), 119, Manifest.permission.READ_EXTERNAL_STORAGE);
             }
-        } else {
-            EasyPermissions.requestPermissions(this, getString(R.string.READ_EXTERNAL_STORAGE), 119, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
     }
 
@@ -226,6 +276,50 @@ public class PickerActivity extends Activity implements DataCallback, View.OnCli
             } else if (resultCode == PickerConfig.RESULT_CODE) {
                 done(selects);
             }
+        }else if(requestCode == 300){
+            if(data==null){
+               finish();
+               return;
+            }
+            int count = data.getClipData().getItemCount();
+            ArrayList<Media> selects=new ArrayList<>();
+            for(int i=0; i<count;i++){
+                Uri uri = data.getClipData().getItemAt(i).getUri();
+                String[] MEDIA_PROJECTION = {
+                        MediaStore.Files.FileColumns.DATA,
+                        MediaStore.Files.FileColumns.DISPLAY_NAME,
+                        MediaStore.Files.FileColumns.DATE_TAKEN,
+                        MediaStore.Files.FileColumns.MIME_TYPE,
+                        MediaStore.Files.FileColumns.SIZE};
+                Cursor cursor =
+                        getContentResolver().query(uri, MEDIA_PROJECTION, null, null, null);
+                cursor.moveToFirst();
+                String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+                long dateTime = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_TAKEN));
+                String mediaType = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE));
+                Log.e("dmc", "MIME_TYPE "+mediaType);
+                long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE));
+
+                Media media = new Media(path, name, dateTime,getTypeByMIME_TYPE(mediaType), size, -1, "");
+                Log.e("dmc", "path "+media.path);
+                Log.e("dmc", "name "+media.name);
+                Log.e("dmc", "size "+media.size);
+                Log.e("dmc", "mediaType "+media.mediaType);
+                Log.e("dmc", "time "+media.time);
+                selects.add(media);
+            }
+            done(selects);
         }
+    }
+
+
+    public int getTypeByMIME_TYPE(String type){
+        if(type.indexOf("image")!=-1){
+            return  1;
+        }else if(type.indexOf("video")!=-1){
+            return 3;
+        }
+        return -1;
     }
 }
