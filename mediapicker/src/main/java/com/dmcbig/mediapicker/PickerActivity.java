@@ -308,6 +308,7 @@ public class PickerActivity extends FragmentActivity implements DataCallback, Vi
                 Log.e("dmc", "mediaType "+media.mediaType);
                 Log.e("dmc", "time "+media.time);
                 selects.add(media);
+                cursor.close();
             }
             done(selects);
         }
