@@ -285,6 +285,10 @@ public class PickerActivity extends FragmentActivity implements DataCallback, Vi
             ArrayList<Media> selects=new ArrayList<>();
             for(int i=0; i<count;i++){
                 Uri uri = data.getClipData().getItemAt(i).getUri();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    int flag = Intent.FLAG_GRANT_READ_URI_PERMISSION;
+                    getContentResolver().takePersistableUriPermission(uri, flag);
+                }
                 String[] MEDIA_PROJECTION = {
                         MediaStore.Files.FileColumns.DATA,
                         MediaStore.Files.FileColumns.DISPLAY_NAME,

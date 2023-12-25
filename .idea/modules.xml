@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MediaPickerPoject.iml" filepath="$PROJECT_DIR$/.idea/modules/MediaPickerPoject.iml" group="MediaPickerPoject" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="MediaPickerPoject/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mediapicker/mediapicker.iml" filepath="$PROJECT_DIR$/.idea/modules/mediapicker/mediapicker.iml" group="MediaPickerPoject/mediapicker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MediaPickerPoject.iml" filepath="$PROJECT_DIR$/.idea/modules/MediaPickerPoject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MediaPickerPoject.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.iml" filepath="$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/mediapicker/MediaPickerPoject.mediapicker.unitTest.iml" />
     </modules>
   </component>
 </project>

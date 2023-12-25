@@ -1,5 +1,6 @@
 package com.dmcbig.mediapicker.entity;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.text.TextUtils;
  */
 
 public class Media implements Parcelable {
+    public String uri;
     public String path;
     public String name;
     public String extension;
@@ -19,6 +21,22 @@ public class Media implements Parcelable {
     public String parentDir;
 
     public Media(String path, String name, long time, int mediaType, long size, int id, String parentDir) {
+        this.uri = "";
+        this.path = path;
+        this.name = name;
+        if (!TextUtils.isEmpty(name) && name.indexOf(".") != -1) {
+            this.extension = name.substring(name.lastIndexOf("."), name.length());
+        } else {
+            this.extension = "null";
+        }
+        this.time = time;
+        this.mediaType = mediaType;
+        this.size = size;
+        this.id = id;
+        this.parentDir = parentDir;
+    }
+    public Media(String uri,String path, String name, long time, int mediaType, long size, int id, String parentDir) {
+        this.uri = uri;
         this.path = path;
         this.name = name;
         if (!TextUtils.isEmpty(name) && name.indexOf(".") != -1) {
@@ -33,7 +51,6 @@ public class Media implements Parcelable {
         this.parentDir = parentDir;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -41,6 +58,7 @@ public class Media implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.uri);
         dest.writeString(this.path);
         dest.writeString(this.name);
         dest.writeString(this.extension);
@@ -52,6 +70,7 @@ public class Media implements Parcelable {
     }
 
     protected Media(Parcel in) {
+        this.uri = in.readString();
         this.path = in.readString();
         this.name = in.readString();
         this.extension = in.readString();
